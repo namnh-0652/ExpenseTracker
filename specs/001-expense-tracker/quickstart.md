@@ -41,46 +41,84 @@ Server starts at `http://localhost:5173`
 
 ## Project Structure
 
-After setup, create this structure:
+After setup, create this feature-first structure (Constitution Principle III):
 
 ```bash
-mkdir -p src/{components/{TransactionForm,TransactionList,Dashboard,FilterBar,shared},services,utils,constants}
-mkdir -p tests/{services,utils}
+mkdir -p src/features/{transactions,dashboard,filters,export}
+mkdir -p src/features/transactions/{components,services,hooks}
+mkdir -p src/features/dashboard/{components,services}
+mkdir -p src/features/filters/{components,services}
+mkdir -p src/features/export/{components,services}
+mkdir -p src/shared/{components,services,utils,constants}
+mkdir -p tests/features/{transactions,dashboard,filters,export}
+mkdir -p tests/shared/utils
 ```
 
 **Full structure:**
 ```
 src/
-├── components/
-│   ├── TransactionForm/      # P1
-│   ├── TransactionList/       # P1
-│   ├── Dashboard/             # P2
-│   ├── FilterBar/             # P3
-│   └── shared/                # Reusable UI
-├── services/
-│   ├── transactionService.js
-│   ├── categoryService.js
-│   ├── calculationService.js
-│   ├── filterService.js
-│   └── exportService.js
-├── utils/
-│   ├── dateUtils.js
-│   ├── validationUtils.js
-│   └── storageUtils.js
-├── constants/
-│   └── categories.js
+├── features/                      # Feature-first organization
+│   ├── transactions/              # P1: Transaction management
+│   │   ├── components/
+│   │   │   ├── TransactionForm/
+│   │   │   └── TransactionList/
+│   │   ├── services/
+│   │   │   └── transactionService.js
+│   │   └── hooks/
+│   │       └── useTransactions.js
+│   ├── dashboard/                 # P2: Analytics & reporting
+│   │   ├── components/
+│   │   │   ├── Dashboard/
+│   │   │   ├── SummaryCard/
+│   │   │   ├── CategoryChart/
+│   │   │   └── TimePeriodSelector/
+│   │   └── services/
+│   │       └── calculationService.js
+│   ├── filters/                   # P3: Search & filter
+│   │   ├── components/
+│   │   │   └── FilterBar/
+│   │   └── services/
+│   │       └── filterService.js
+│   └── export/                    # P3: CSV export
+│       ├── components/
+│       │   └── ExportButton/
+│       └── services/
+│           └── exportService.js
+├── shared/                        # Cross-feature shared code
+│   ├── components/
+│   │   ├── Button/
+│   │   └── Input/
+│   ├── services/
+│   │   └── categoryService.js
+│   ├── utils/
+│   │   ├── storageUtils.js
+│   │   ├── validationUtils.js
+│   │   └── dateUtils.js
+│   └── constants/
+│       ├── categories.js
+│       └── storageKeys.js
 ├── App.jsx
 ├── App.css
-└── index.js
+└── main.jsx
 
 tests/
-├── services/
-│   ├── transactionService.test.js
-│   ├── calculationService.test.js
-│   └── filterService.test.js
-└── utils/
-    ├── validationUtils.test.js
-    └── dateUtils.test.js
+├── features/
+│   ├── transactions/
+│   │   └── services/
+│   │       └── transactionService.test.js
+│   ├── dashboard/
+│   │   └── services/
+│   │       └── calculationService.test.js
+│   ├── filters/
+│   │   └── services/
+│   │       └── filterService.test.js
+│   └── export/
+│       └── services/
+│           └── exportService.test.js
+└── shared/
+    └── utils/
+        ├── validationUtils.test.js
+        └── dateUtils.test.js
 ```
 
 ---
@@ -120,7 +158,7 @@ For each service:
 Example:
 ```bash
 # 1. Create test file
-touch tests/services/transactionService.test.js
+touch tests/features/transactions/services/transactionService.test.js
 
 # 2. Write test
 # (see Testing Examples section below)
@@ -129,7 +167,7 @@ touch tests/services/transactionService.test.js
 npm run test
 
 # 4. Implement service
-touch src/services/transactionService.js
+touch src/features/transactions/services/transactionService.js
 
 # 5. Repeat until test passes
 ```
@@ -140,7 +178,7 @@ touch src/services/transactionService.js
 
 ### 1. Storage Key Constants
 
-**File**: `src/constants/storageKeys.js`
+**File**: `src/shared/constants/storageKeys.js`
 
 ```javascript
 export const STORAGE_KEYS = {
@@ -153,7 +191,7 @@ export const SCHEMA_VERSION = 1;
 
 ### 2. Default Categories
 
-**File**: `src/constants/categories.js`
+**File**: `src/shared/constants/categories.js`
 
 ```javascript
 export const DEFAULT_CATEGORIES = {
@@ -191,11 +229,11 @@ export function getCategoriesByType(type) {
 
 ### 3. Transaction Context (Global State)
 
-**File**: `src/context/TransactionContext.jsx`
+**File**: `src/shared/contexts/TransactionContext.jsx`
 
 ```javascript
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import * as transactionService from '../services/transactionService';
+import { transactionService } from '../../features/transactions/services/transactionService.js';
 
 const TransactionContext = createContext();
 
@@ -263,7 +301,7 @@ export function TransactionProvider({ children }) {
 
 **Usage in App.jsx:**
 ```javascript
-import { TransactionProvider } from './context/TransactionContext';
+import { TransactionProvider } from './shared/contexts/TransactionContext';
 
 function App() {
   return (
@@ -282,11 +320,11 @@ function App() {
 
 ### Service Test Example
 
-**File**: `tests/services/calculationService.test.js`
+**File**: `tests/features/dashboard/services/calculationService.test.js`
 
 ```javascript
 import { describe, it, expect } from 'vitest';
-import * as calculationService from '../../src/services/calculationService';
+import { calculationService } from '../../../../src/features/dashboard/services/calculationService.js';
 
 describe('calculationService', () => {
   const sampleTransactions = [
@@ -385,13 +423,13 @@ import '@testing-library/jest-dom';
 
 ### TransactionForm Component (P1)
 
-**File**: `src/components/TransactionForm/TransactionForm.jsx`
+**File**: `src/features/transactions/components/TransactionForm/TransactionForm.jsx`
 
 ```javascript
 import React, { useState } from 'react';
-import { useTransactions } from '../../context/TransactionContext';
-import { getCategoriesByType } from '../../constants/categories';
-import * as validationService from '../../utils/validationUtils';
+import { useTransactions } from '../../../../shared/contexts/TransactionContext';
+import { getCategoriesByType } from '../../../../shared/constants/categories';
+import { validationService } from '../../../../shared/utils/validationUtils';
 import './TransactionForm.css';
 
 export default function TransactionForm({ onSuccess }) {
@@ -587,7 +625,7 @@ npm install --save-dev eslint eslint-plugin-react eslint-plugin-react-hooks
 ### Add a New Transaction
 
 ```javascript
-import { useTransactions } from './context/TransactionContext';
+import { useTransactions } from './shared/contexts/TransactionContext';
 
 function MyComponent() {
   const { addTransaction } = useTransactions();
@@ -609,8 +647,8 @@ function MyComponent() {
 ### Filter Transactions
 
 ```javascript
-import { useTransactions } from './context/TransactionContext';
-import * as filterService from './services/filterService';
+import { useTransactions } from './shared/contexts/TransactionContext';
+import { filterService } from './features/filters/services/filterService';
 
 function MyComponent() {
   const { transactions } = useTransactions();
@@ -625,8 +663,8 @@ function MyComponent() {
 ### Calculate Dashboard Summary
 
 ```javascript
-import { useTransactions } from './context/TransactionContext';
-import * as calculationService from './services/calculationService';
+import { useTransactions } from './shared/contexts/TransactionContext';
+import { calculationService } from './features/dashboard/services/calculationService';
 
 function Dashboard() {
   const { transactions } = useTransactions();
@@ -650,8 +688,8 @@ function Dashboard() {
 ### Export to CSV
 
 ```javascript
-import { useTransactions } from './context/TransactionContext';
-import * as exportService from './services/exportService';
+import { useTransactions } from './shared/contexts/TransactionContext';
+import { exportService } from './features/export/services/exportService';
 
 function ExportButton() {
   const { transactions } = useTransactions();

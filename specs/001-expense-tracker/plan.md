@@ -138,48 +138,100 @@ specs/[###-feature]/
 
 ```text
 src/
-├── components/           # React UI components
-│   ├── TransactionForm/  # P1: Create/edit transaction form
-│   ├── TransactionList/  # P1: Display list of transactions
-│   ├── Dashboard/        # P2: Dashboard with time filters
-│   ├── FilterBar/        # P3: Search and filter controls
-│   └── shared/           # Reusable UI components (buttons, inputs, etc.)
-├── services/             # Business logic and data operations
-│   ├── transactionService.js   # CRUD operations for transactions
-│   ├── categoryService.js      # Category management
-│   ├── calculationService.js   # Financial calculations (totals, balances)
-│   ├── filterService.js        # Search and filter logic
-│   └── exportService.js        # CSV export functionality
-├── utils/                # Helper functions
-│   ├── dateUtils.js      # Date formatting and manipulation
-│   ├── validationUtils.js  # Input validation
-│   └── storageUtils.js   # localStorage wrapper
-├── constants/            # Application constants
-│   └── categories.js     # Default income/expense categories
-├── App.jsx               # Main application component
-├── App.css               # Global styles
-└── index.js              # Entry point
+├── features/                 # Feature-first organization (Constitution III)
+│   ├── transactions/         # P1: Transaction management
+│   │   ├── components/
+│   │   │   ├── TransactionForm/
+│   │   │   │   ├── TransactionForm.jsx
+│   │   │   │   └── TransactionForm.css
+│   │   │   └── TransactionList/
+│   │   │       ├── TransactionList.jsx
+│   │   │       └── TransactionList.css
+│   │   ├── services/
+│   │   │   └── transactionService.js
+│   │   └── hooks/
+│   │       └── useTransactions.js (Context)
+│   ├── dashboard/            # P2: Analytics & reporting
+│   │   ├── components/
+│   │   │   ├── Dashboard/
+│   │   │   │   ├── Dashboard.jsx
+│   │   │   │   └── Dashboard.css
+│   │   │   ├── SummaryCard/
+│   │   │   │   └── SummaryCard.jsx
+│   │   │   ├── CategoryChart/
+│   │   │   │   └── CategoryChart.jsx
+│   │   │   └── TimePeriodSelector/
+│   │   │       └── TimePeriodSelector.jsx
+│   │   └── services/
+│   │       └── calculationService.js
+│   ├── filters/              # P3: Search & filter
+│   │   ├── components/
+│   │   │   └── FilterBar/
+│   │   │       ├── FilterBar.jsx
+│   │   │       └── FilterBar.css
+│   │   └── services/
+│   │       └── filterService.js
+│   └── export/               # P3: CSV export
+│       ├── components/
+│       │   └── ExportButton/
+│       │       └── ExportButton.jsx
+│       └── services/
+│           └── exportService.js
+├── shared/                   # Cross-feature shared code
+│   ├── components/           # Reusable UI components
+│   │   ├── Button/
+│   │   │   └── Button.jsx
+│   │   └── Input/
+│   │       └── Input.jsx
+│   ├── services/
+│   │   └── categoryService.js
+│   ├── utils/
+│   │   ├── storageUtils.js
+│   │   ├── validationUtils.js
+│   │   └── dateUtils.js
+│   └── constants/
+│       ├── categories.js
+│       └── storageKeys.js
+├── App.jsx                   # Root component
+├── App.css                   # Global styles
+└── main.jsx                  # Entry point
 
 public/
 ├── index.html
 └── favicon.ico
 
 tests/
-├── services/             # Service layer tests (critical path)
-│   ├── transactionService.test.js
-│   ├── calculationService.test.js
-│   └── filterService.test.js
-└── utils/                # Utility tests
-    ├── validationUtils.test.js
-    └── dateUtils.test.js
+├── features/
+│   ├── transactions/
+│   │   └── services/
+│   │       └── transactionService.test.js
+│   ├── dashboard/
+│   │   └── services/
+│   │       └── calculationService.test.js
+│   ├── filters/
+│   │   └── services/
+│   │       └── filterService.test.js
+│   └── export/
+│       └── services/
+│           └── exportService.test.js
+└── shared/
+    └── utils/
+        ├── validationUtils.test.js
+        └── dateUtils.test.js
 
 package.json
-vite.config.js (or react-scripts config)
+vite.config.js
 README.md
 .gitignore
 ```
 
-**Structure Decision**: Frontend-only single-page React application. No backend required for MVP since localStorage handles persistence. Components organized by feature (P1, P2, P3 priorities). Services layer encapsulates all business logic and data operations to enable easy testing and future backend migration.
+**Structure Decision**: Feature-first organization (Constitution Principle III). Each feature (transactions, dashboard, filters, export) is self-contained with its own components, services, and hooks. This enables:
+- **Independent development**: Each feature maps to a user story and can be developed/deployed separately
+- **Easy navigation**: All transaction-related code in `features/transactions/`
+- **Scalability**: New features are added as new folders without touching existing code
+- **Testing**: Tests mirror the feature structure
+
+Shared code (utilities, constants, common components) lives in `shared/` and is used by multiple features.
 
 ## Complexity Tracking
 
