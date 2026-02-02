@@ -4,6 +4,7 @@ import { TransactionForm } from '@/features/transactions/components/TransactionF
 import { TransactionList } from '@/features/transactions/components/TransactionList/TransactionList';
 import { Dashboard } from '@/features/dashboard/components/Dashboard/Dashboard';
 import { FilterBar } from '@/features/filters/components/FilterBar/FilterBar';
+import { ConfirmDialog } from '@/shared/components/ConfirmDialog/ConfirmDialog';
 import { applyFilters, type FilterCriteria } from '@/features/filters/services/filterService';
 import type { Transaction, TransactionFormData } from '@/shared/types';
 import './App.css';
@@ -15,6 +16,10 @@ function AppContent() {
   const [editingTransaction, setEditingTransaction] = useState<Transaction | null>(null);
   const [currentView, setCurrentView] = useState<View>('dashboard');
   const [filters, setFilters] = useState<FilterCriteria>({});
+  const [deleteConfirm, setDeleteConfirm] = useState<{ isOpen: boolean; transactionId: string | null }>({
+    isOpen: false,
+    transactionId: null,
+  });
 
   // Apply filters to transactions with useMemo optimization
   const filteredTransactions = useMemo(() => {
@@ -52,10 +57,21 @@ function AppContent() {
   };
 
   const handleDelete = (id: string) => {
-    deleteTransaction(id);
-    if (editingTransaction?.id === id) {
-      setEditingTransaction(null);
+    setDeleteConfirm({ isOpen: true, transactionId: id });
+  };
+
+  const confirmDelete = () => {
+    if (deleteConfirm.transactionId) {
+      deleteTransaction(deleteConfirm.transactionId);
+      if (editingTransaction?.id === deleteConfirm.transactionId) {
+        setEditingTransaction(null);
+      }
     }
+    setDeleteConfirm({ isOpen: false, transactionId: null });
+  };
+
+  const cancelDelete = () => {
+    setDeleteConfirm({ isOpen: false, transactionId: null });
   };
 
   return (
@@ -110,6 +126,17 @@ function AppContent() {
           </>
         )}
       </main>
+
+      <ConfirmDialog
+        isOpen={deleteConfirm.isOpen}
+        title="Delete Transaction"
+        message="Are you sure you want to delete this transaction? This action cannot be undone."
+        confirmLabel="Delete"
+        cancelLabel="Cancel"
+        type="danger"
+        onConfirm={confirmDelete}
+        onCancel={cancelDelete}
+      />
     </div>
   );
 }
