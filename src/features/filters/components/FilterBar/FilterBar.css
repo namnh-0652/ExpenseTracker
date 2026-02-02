@@ -17,6 +17,12 @@
   border-bottom: 1px solid #e5e7eb;
 }
 
+.filter-bar-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
 .filter-bar-header h3 {
   margin: 0;
   font-size: 18px;

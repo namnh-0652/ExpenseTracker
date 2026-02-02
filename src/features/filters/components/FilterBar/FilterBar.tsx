@@ -2,16 +2,20 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { getCategories } from '@/shared/services/categoryService';
 import type { FilterCriteria } from '@/features/filters/services/filterService';
 import type { Category } from '@/shared/constants/categories';
+import type { Transaction } from '@/shared/types';
+import { ExportButton } from '@/features/export/components/ExportButton/ExportButton';
 import './FilterBar.css';
 
 interface FilterBarProps {
   onFilterChange: (filters: FilterCriteria) => void;
   activeFilterCount: number;
+  transactions: Transaction[];
 }
 
 export const FilterBar: React.FC<FilterBarProps> = ({
   onFilterChange,
   activeFilterCount,
+  transactions,
 }) => {
   const [searchText, setSearchText] = useState('');
   const [type, setType] = useState<'all' | 'income' | 'expense'>('all');
@@ -74,11 +78,14 @@ export const FilterBar: React.FC<FilterBarProps> = ({
             <span className="filter-count">{activeFilterCount} active</span>
           )}
         </h3>
-        {hasActiveFilters && (
-          <button className="clear-filters-btn" onClick={handleClearFilters}>
-            Clear all
-          </button>
-        )}
+        <div className="filter-bar-actions">
+          {hasActiveFilters && (
+            <button className="clear-filters-btn" onClick={handleClearFilters}>
+              Clear all
+            </button>
+          )}
+          <ExportButton transactions={transactions} />
+        </div>
       </div>
 
       <div className="filter-controls">

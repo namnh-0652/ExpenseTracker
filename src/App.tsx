@@ -99,6 +99,7 @@ function AppContent() {
               <FilterBar
                 onFilterChange={setFilters}
                 activeFilterCount={activeFilterCount}
+                transactions={filteredTransactions}
               />
               <TransactionList
                 transactions={filteredTransactions}

@@ -158,19 +158,19 @@ Per Progressive Enhancement principle:
 
 ### Tests for User Story 4
 
-- [ ] T057 [P] [US4] Write tests/features/export/services/exportService.test.js (test CSV generation accuracy and escaping)
-- [ ] T058 [P] [US4] Test exportToCSV, escapeCSVValue, generateFilename
+- [X] T057 [P] [US4] Write tests/features/export/services/exportService.test.js (test CSV generation accuracy and escaping)
+- [X] T058 [P] [US4] Test exportToCSV, escapeCSVValue, generateFilename
 
 ### Implementation for User Story 4
 
-- [ ] T059 [US4] Implement src/features/export/services/exportService.js (exportToCSV, downloadCSV, escapeCSVValue, generateFilename)
-- [ ] T060 [US4] Create "Export CSV" button component in src/features/export/components/ExportButton/ExportButton.jsx
-- [ ] T061 [US4] Add ExportButton to TransactionList or FilterBar
-- [ ] T062 [US4] Connect ExportButton to current filtered transaction list
-- [ ] T063 [US4] Implement CSV download using Blob and createObjectURL
-- [ ] T064 [US4] Add empty state handling (disable button or show message when no transactions)
-- [ ] T065 [US4] Add success feedback (show "Export successful" message)
-- [ ] T066 [US4] Test CSV escaping with special characters (commas, quotes, newlines)
+- [X] T059 [US4] Implement src/features/export/services/exportService.js (exportToCSV, downloadCSV, escapeCSVValue, generateFilename)
+- [X] T060 [US4] Create "Export CSV" button component in src/features/export/components/ExportButton/ExportButton.jsx
+- [X] T061 [US4] Add ExportButton to TransactionList or FilterBar
+- [X] T062 [US4] Connect ExportButton to current filtered transaction list
+- [X] T063 [US4] Implement CSV download using Blob and createObjectURL
+- [X] T064 [US4] Add empty state handling (disable button or show message when no transactions)
+- [X] T065 [US4] Add success feedback (show "Export successful" message)
+- [X] T066 [US4] Test CSV escaping with special characters (commas, quotes, newlines)
 
 **Checkpoint**: At this point, User Story 4 should be fully functional and testable independently. **DEPLOY complete feature set**.
 
