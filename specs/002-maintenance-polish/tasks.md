@@ -31,9 +31,9 @@
 
 **⚠️ CRITICAL**: Complete before starting user story implementation
 
-- [ ] T004 Create `useLocalStorage.ts` generic hook in `src/shared/hooks/useLocalStorage.ts`
-- [ ] T005 [P] Create ThemeContext interface and types in `src/features/theme/ThemeContext.tsx`
-- [ ] T006 [P] Create theme constants (colors, spacing scale) in `src/shared/constants/theme.ts`
+- [X] T004 Create `useLocalStorage.ts` generic hook in `src/shared/hooks/useLocalStorage.ts`
+- [X] T005 [P] Create ThemeContext interface and types in `src/features/theme/ThemeContext.tsx`
+- [X] T006 [P] Create theme constants (colors, spacing scale) in `src/shared/constants/theme.ts`
 
 **Checkpoint**: Foundation ready - user stories can now be implemented in parallel
 
