@@ -86,21 +86,21 @@
    ============================================ */
 [data-theme='dark'] {
   /* Backgrounds */
-  --color-background: #1a202c;
-  --color-background-alt: #2d3748;
-  --color-surface: #2d3748;
-  --color-surface-alt: #4a5568;
-  --color-surface-light: #2d3748;
+  --color-background: #0f1419;
+  --color-background-alt: #1a202c;
+  --color-surface: #1a202c;
+  --color-surface-alt: #2d3748;
+  --color-surface-light: #1a202c;
   
   /* Text Colors */
-  --color-text-primary: #f7fafc;
-  --color-text-secondary: #e2e8f0;
-  --color-text-tertiary: #cbd5e0;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #cbd5e0;
+  --color-text-tertiary: #a0aec0;
   
   /* Brand Colors */
-  --color-primary: #7c3aed;
-  --color-primary-hover: #6d28d9;
-  --color-primary-light: #4c1d95;
+  --color-primary: #8b5cf6;
+  --color-primary-hover: #7c3aed;
+  --color-primary-light: #6d28d9;
   --color-primary-dark: #5b21b6;
   
   /* Semantic Colors - Success */
@@ -128,9 +128,9 @@
   --color-info-dark: #2a4365;
   
   /* Borders */
-  --color-border: #4a5568;
-  --color-border-dark: #2d3748;
-  --color-border-light: #718096;
+  --color-border: #374151;
+  --color-border-dark: #1f2937;
+  --color-border-light: #4b5563;
   
   /* Shadows - darker for dark theme */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);

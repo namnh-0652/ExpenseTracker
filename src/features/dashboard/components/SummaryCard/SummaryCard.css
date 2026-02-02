@@ -1,9 +1,9 @@
 /* Summary Card */
 .summary-card {
-  background: white;
+  background: var(--color-surface);
   border-radius: 12px;
   padding: 24px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-md);
   display: flex;
   gap: 16px;
   align-items: flex-start;
@@ -12,7 +12,7 @@
 
 .summary-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--shadow-lg);
 }
 
 .card-icon {
@@ -30,7 +30,7 @@
   margin: 0 0 8px 0;
   font-size: 14px;
   font-weight: 500;
-  color: #666;
+  color: var(--color-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -39,38 +39,38 @@
   margin: 0 0 8px 0;
   font-size: 32px;
   font-weight: 700;
-  color: #1a1a1a;
+  color: var(--color-text-primary);
   line-height: 1.2;
 }
 
 .card-content .count {
   font-size: 13px;
-  color: #999;
+  color: var(--color-text-tertiary);
 }
 
 /* Card Type Specific Styles */
 .summary-card.income {
-  border-left: 4px solid #28a745;
+  border-left: 4px solid var(--color-success);
 }
 
 .summary-card.expense {
-  border-left: 4px solid #dc3545;
+  border-left: 4px solid var(--color-danger);
 }
 
 .summary-card.balance.positive {
-  border-left: 4px solid #007bff;
+  border-left: 4px solid var(--color-info);
 }
 
 .summary-card.balance.negative {
-  border-left: 4px solid #ffc107;
+  border-left: 4px solid var(--color-warning);
 }
 
 .summary-card.balance.positive .amount {
-  color: #007bff;
+  color: var(--color-info);
 }
 
 .summary-card.balance.negative .amount {
-  color: #dc3545;
+  color: var(--color-danger);
 }
 
 /* Responsive Design */

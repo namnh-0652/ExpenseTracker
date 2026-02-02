@@ -7,7 +7,7 @@
 .empty-state {
   text-align: center;
   padding: 40px 20px;
-  color: #999;
+  color: var(--color-text-tertiary);
 }
 
 .empty-state p {
@@ -38,13 +38,13 @@
 .category-name {
   font-size: 15px;
   font-weight: 500;
-  color: #1a1a1a;
+  color: var(--color-text-primary);
   flex: 1;
 }
 
 .category-count {
   font-size: 13px;
-  color: #999;
+  color: var(--color-text-tertiary);
   white-space: nowrap;
 }
 
@@ -58,13 +58,13 @@
 .category-amount .amount {
   font-size: 18px;
   font-weight: 600;
-  color: #333;
+  color: var(--color-text-primary);
 }
 
 .category-amount .percentage {
   font-size: 14px;
   font-weight: 500;
-  color: #007bff;
+  color: var(--color-primary);
   min-width: 50px;
   text-align: right;
 }
