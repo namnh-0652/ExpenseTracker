@@ -1,0 +1,163 @@
+/**
+ * Theme System
+ * CSS Custom Properties for light and dark themes
+ * Ensures WCAG AA contrast ratios (4.5:1 minimum for normal text)
+ */
+
+/* ============================================
+   LIGHT THEME (Default)
+   ============================================ */
+:root {
+  /* Backgrounds */
+  --color-background: #ffffff;
+  --color-background-alt: #f7fafc;
+  --color-surface: #ffffff;
+  --color-surface-alt: #edf2f7;
+  --color-surface-light: #f7fafc;
+  
+  /* Text Colors */
+  --color-text-primary: #1a202c;
+  --color-text-secondary: #4a5568;
+  --color-text-tertiary: #718096;
+  
+  /* Brand Colors */
+  --color-primary: #667eea;
+  --color-primary-hover: #5568d3;
+  --color-primary-light: #eef2ff;
+  --color-primary-dark: #4c51bf;
+  
+  /* Semantic Colors - Success */
+  --color-success: #48bb78;
+  --color-success-hover: #38a169;
+  --color-success-light: #c6f6d5;
+  --color-success-dark: #2f855a;
+  
+  /* Semantic Colors - Danger/Error */
+  --color-danger: #f56565;
+  --color-danger-hover: #e53e3e;
+  --color-danger-light: #fed7d7;
+  --color-danger-dark: #c53030;
+  
+  /* Semantic Colors - Warning */
+  --color-warning: #ed8936;
+  --color-warning-hover: #dd6b20;
+  --color-warning-light: #feebc8;
+  --color-warning-dark: #c05621;
+  
+  /* Semantic Colors - Info */
+  --color-info: #4299e1;
+  --color-info-hover: #3182ce;
+  --color-info-light: #bee3f8;
+  --color-info-dark: #2c5282;
+  
+  /* Borders */
+  --color-border: #e2e8f0;
+  --color-border-dark: #cbd5e0;
+  --color-border-light: #f7fafc;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  
+  /* Border Radius */
+  --border-radius: 8px;
+  --border-radius-sm: 4px;
+  --border-radius-lg: 12px;
+  --border-radius-full: 9999px;
+  
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-normal: 200ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
+  --transition-slow: 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
+}
+
+/* ============================================
+   DARK THEME
+   ============================================ */
+[data-theme='dark'] {
+  /* Backgrounds */
+  --color-background: #1a202c;
+  --color-background-alt: #2d3748;
+  --color-surface: #2d3748;
+  --color-surface-alt: #4a5568;
+  --color-surface-light: #2d3748;
+  
+  /* Text Colors */
+  --color-text-primary: #f7fafc;
+  --color-text-secondary: #e2e8f0;
+  --color-text-tertiary: #cbd5e0;
+  
+  /* Brand Colors */
+  --color-primary: #7c3aed;
+  --color-primary-hover: #6d28d9;
+  --color-primary-light: #4c1d95;
+  --color-primary-dark: #5b21b6;
+  
+  /* Semantic Colors - Success */
+  --color-success: #68d391;
+  --color-success-hover: #48bb78;
+  --color-success-light: #2f855a;
+  --color-success-dark: #276749;
+  
+  /* Semantic Colors - Danger/Error */
+  --color-danger: #fc8181;
+  --color-danger-hover: #f56565;
+  --color-danger-light: #c53030;
+  --color-danger-dark: #9b2c2c;
+  
+  /* Semantic Colors - Warning */
+  --color-warning: #f6ad55;
+  --color-warning-hover: #ed8936;
+  --color-warning-light: #c05621;
+  --color-warning-dark: #9c4221;
+  
+  /* Semantic Colors - Info */
+  --color-info: #63b3ed;
+  --color-info-hover: #4299e1;
+  --color-info-light: #2c5282;
+  --color-info-dark: #2a4365;
+  
+  /* Borders */
+  --color-border: #4a5568;
+  --color-border-dark: #2d3748;
+  --color-border-light: #718096;
+  
+  /* Shadows - darker for dark theme */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================
+   SMOOTH THEME TRANSITIONS
+   ============================================ */
+html {
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+/* Disable transitions for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html,
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

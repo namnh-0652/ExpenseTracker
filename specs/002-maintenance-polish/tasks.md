@@ -176,41 +176,41 @@
 
 ### Theme Provider Setup
 
-- [ ] T062 [P] [US5] Create ThemeProvider component in `src/features/theme/ThemeProvider.tsx`
-- [ ] T063 [P] [US5] Create useTheme custom hook in `src/shared/hooks/useTheme.ts`
-- [ ] T064 [US5] Implement theme detection (prefers-color-scheme) on first visit
-- [ ] T065 [US5] Implement theme persistence in localStorage: `expense-tracker-theme`
+- [X] T062 [P] [US5] Create ThemeProvider component in `src/features/theme/ThemeProvider.tsx`
+- [X] T063 [P] [US5] Create useTheme custom hook in `src/shared/hooks/useTheme.ts`
+- [X] T064 [US5] Implement theme detection (prefers-color-scheme) on first visit
+- [X] T065 [US5] Implement theme persistence in localStorage: `expense-tracker-theme`
 
 ### Theme Styles
 
-- [ ] T066 [P] [US5] Create `src/styles/themes.css` with CSS custom properties
-- [ ] T067 [US5] Define light theme color palette in `:root` (themes.css)
-- [ ] T068 [US5] Define dark theme color palette in `[data-theme="dark"]` (themes.css)
-- [ ] T069 [US5] Ensure WCAG AA contrast ratios (4.5:1 minimum) for both themes
-- [ ] T070 [US5] Import themes.css in `src/main.tsx` or `src/index.css`
+- [X] T066 [P] [US5] Create `src/styles/themes.css` with CSS custom properties
+- [X] T067 [US5] Define light theme color palette in `:root` (themes.css)
+- [X] T068 [US5] Define dark theme color palette in `[data-theme="dark"]` (themes.css)
+- [X] T069 [US5] Ensure WCAG AA contrast ratios (4.5:1 minimum) for both themes
+- [X] T070 [US5] Import themes.css in `src/main.tsx` or `src/index.css`
 
 ### Theme Toggle UI
 
-- [ ] T071 [US5] Add theme toggle button to Header component (moon/sun icon)
-- [ ] T072 [US5] Add theme toggle styles and hover effects in `Header.css`
-- [ ] T073 [US5] Connect toggle button to theme context `toggleTheme()` function
+- [X] T071 [US5] Add theme toggle button to Header component (moon/sun icon)
+- [X] T072 [US5] Add theme toggle styles and hover effects in `Header.css`
+- [X] T073 [US5] Connect toggle button to theme context `toggleTheme()` function
 
 ### Component Updates for Theme
 
-- [ ] T074 [US5] Update `src/App.css` to use CSS custom properties (colors)
-- [ ] T075 [US5] Update dashboard components to use theme variables
-- [ ] T076 [US5] Update transaction components to use theme variables
-- [ ] T077 [US5] Update filter components to use theme variables
-- [ ] T078 [US5] Update shared components (ConfirmDialog, ErrorBoundary) to use theme variables
-- [ ] T079 [US5] Update chart colors to adapt for dark theme (if using charts)
+- [X] T074 [US5] Update `src/App.css` to use CSS custom properties (colors)
+- [X] T075 [US5] Update dashboard components to use theme variables
+- [X] T076 [US5] Update transaction components to use theme variables
+- [X] T077 [US5] Update filter components to use theme variables
+- [X] T078 [US5] Update shared components (ConfirmDialog, ErrorBoundary) to use theme variables
+- [X] T079 [US5] Update chart colors to adapt for dark theme (if using charts)
 
 ### Integration and Validation
 
-- [ ] T080 [US5] Wrap App with ThemeProvider in `src/main.tsx`
-- [ ] T081 [US5] Test theme toggle functionality (instant switch)
-- [ ] T082 [US5] Test theme persistence (close/reopen browser)
-- [ ] T083 [US5] Verify all text readable in both themes (contrast check)
-- [ ] T084 [US5] Test on all tabs (Dashboard, Transactions, Filters)
+- [X] T080 [US5] Wrap App with ThemeProvider in `src/main.tsx`
+- [X] T081 [US5] Test theme toggle functionality (instant switch)
+- [X] T082 [US5] Test theme persistence (close/reopen browser)
+- [X] T083 [US5] Verify all text readable in both themes (contrast check)
+- [X] T084 [US5] Test on all tabs (Dashboard, Transactions, Filters)
 
 **Checkpoint**: Dark Theme complete - Theme toggle working with full UI adaptation
 

@@ -8,6 +8,7 @@ import { ConfirmDialog } from '@/shared/components/ConfirmDialog/ConfirmDialog';
 import { Header } from '@/shared/components/Header/Header';
 import { Footer } from '@/shared/components/Footer/Footer';
 import { TabNav } from '@/shared/components/TabNav/TabNav';
+import { ThemeProvider } from '@/features/theme/ThemeProvider';
 import { useLocalStorage } from '@/shared/hooks/useLocalStorage';
 import { TAB_STORAGE_KEY, type TabValue } from '@/shared/constants/theme';
 import { applyFilters, type FilterCriteria } from '@/features/filters/services/filterService';
@@ -171,9 +172,11 @@ function AppContent() {
 
 function App() {
   return (
-    <TransactionProvider>
-      <AppContent />
-    </TransactionProvider>
+    <ThemeProvider>
+      <TransactionProvider>
+        <AppContent />
+      </TransactionProvider>
+    </ThemeProvider>
   );
 }
 

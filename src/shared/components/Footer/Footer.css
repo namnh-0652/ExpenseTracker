@@ -1,9 +1,9 @@
 .app-footer {
-  background-color: #f7fafc;
-  border-top: 1px solid #e2e8f0;
+  background-color: var(--color-background-alt);
+  border-top: 1px solid var(--color-border);
   padding: 1.5rem 0;
   margin-top: auto;
-  color: #4a5568;
+  color: var(--color-text-secondary);
   font-size: 0.875rem;
 }
 
@@ -29,22 +29,22 @@
 .footer-version {
   font-family: 'Courier New', monospace;
   font-weight: 600;
-  color: #667eea;
-  background-color: #e6e6fa;
+  color: var(--color-primary);
+  background-color: var(--color-primary-light);
   padding: 0.125rem 0.5rem;
   border-radius: 4px;
 }
 
 .footer-separator {
-  color: #cbd5e0;
+  color: var(--color-border-dark);
 }
 
 .footer-copyright {
-  color: #718096;
+  color: var(--color-text-tertiary);
 }
 
 .footer-credits {
-  color: #718096;
+  color: var(--color-text-tertiary);
   font-size: 0.8125rem;
 }
 
