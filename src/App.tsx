@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { TransactionProvider, useTransactions } from '@/features/transactions/hooks/useTransactions';
 import { TransactionForm } from '@/features/transactions/components/TransactionForm/TransactionForm';
 import { TransactionList } from '@/features/transactions/components/TransactionList/TransactionList';
 import { Dashboard } from '@/features/dashboard/components/Dashboard/Dashboard';
+import { FilterBar } from '@/features/filters/components/FilterBar/FilterBar';
+import { applyFilters, type FilterCriteria } from '@/features/filters/services/filterService';
 import type { Transaction, TransactionFormData } from '@/shared/types';
 import './App.css';
 
@@ -12,6 +14,22 @@ function AppContent() {
   const { transactions, addTransaction, updateTransaction, deleteTransaction } = useTransactions();
   const [editingTransaction, setEditingTransaction] = useState<Transaction | null>(null);
   const [currentView, setCurrentView] = useState<View>('dashboard');
+  const [filters, setFilters] = useState<FilterCriteria>({});
+
+  // Apply filters to transactions with useMemo optimization
+  const filteredTransactions = useMemo(() => {
+    return applyFilters(transactions, filters);
+  }, [transactions, filters]);
+
+  // Count active filters
+  const activeFilterCount = useMemo(() => {
+    let count = 0;
+    if (filters.searchText) count++;
+    if (filters.type && filters.type !== 'all') count++;
+    if (filters.categoryId) count++;
+    if (filters.dateRange?.start || filters.dateRange?.end) count++;
+    return count;
+  }, [filters]);
 
   const handleSubmit = (data: TransactionFormData) => {
     if (editingTransaction) {
@@ -78,8 +96,12 @@ function AppContent() {
             </section>
 
             <section className="list-section">
+              <FilterBar
+                onFilterChange={setFilters}
+                activeFilterCount={activeFilterCount}
+              />
               <TransactionList
-                transactions={transactions}
+                transactions={filteredTransactions}
                 onEdit={handleEdit}
                 onDelete={handleDelete}
               />
