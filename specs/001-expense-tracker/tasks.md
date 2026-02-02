@@ -30,14 +30,14 @@ Per Progressive Enhancement principle:
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create React project with Vite: `npm create vite@latest expense-tracker -- --template react`
-- [ ] T002 Install dependencies: date-fns, uuid
-- [ ] T003 [P] Install dev dependencies: @testing-library/react, @testing-library/jest-dom, vitest, jsdom
-- [ ] T004 Create feature-first directory structure: `src/{features/{transactions,dashboard,filters,export},shared/{components,services,utils,constants}}` and `tests/{features,shared}`
-- [ ] T005 [P] Configure Vitest in vite.config.js
-- [ ] T006 [P] Create tests/setup.js for test configuration
-- [ ] T007 Create src/shared/constants/storageKeys.js with localStorage key constants
-- [ ] T008 Create src/shared/constants/categories.js with default income/expense categories
+- [X] T001 Create React project with Vite: `npm create vite@latest expense-tracker -- --template react`
+- [X] T002 Install dependencies: date-fns, uuid
+- [X] T003 [P] Install dev dependencies: @testing-library/react, @testing-library/jest-dom, vitest, jsdom
+- [X] T004 Create feature-first directory structure: `src/{features/{transactions,dashboard,filters,export},shared/{components,services,utils,constants}}` and `tests/{features,shared}`
+- [X] T005 [P] Configure Vitest in vite.config.js
+- [X] T006 [P] Create tests/setup.js for test configuration
+- [X] T007 Create src/shared/constants/storageKeys.js with localStorage key constants
+- [X] T008 Create src/shared/constants/categories.js with default income/expense categories
 
 ---
 
