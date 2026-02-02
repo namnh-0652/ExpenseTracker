@@ -224,22 +224,22 @@
 
 ### Celebration Animation Component
 
-- [ ] T085 [P] [US4] Create IncomeAnimation component in `src/shared/components/IncomeAnimation/IncomeAnimation.tsx`
-- [ ] T086 [P] [US4] Create animation styles in `src/styles/animations.css` (keyframes for confetti/success burst)
-- [ ] T087 [US4] Implement confetti particles or success burst effect with CSS/canvas
-- [ ] T088 [US4] Add prefers-reduced-motion check to disable/simplify animation
-- [ ] T089 [US4] Ensure animation is non-blocking (absolute positioned overlay)
-- [ ] T090 [US4] Set animation duration to 2-3 seconds with auto-cleanup
+- [X] T085 [P] [US4] Create IncomeAnimation component in `src/shared/components/IncomeAnimation/IncomeAnimation.tsx`
+- [X] T086 [P] [US4] Create animation styles in `src/styles/animations.css` (keyframes for confetti/success burst)
+- [X] T087 [US4] Implement confetti particles or success burst effect with CSS/canvas
+- [X] T088 [US4] Add prefers-reduced-motion check to disable/simplify animation
+- [X] T089 [US4] Ensure animation is non-blocking (absolute positioned overlay)
+- [X] T090 [US4] Set animation duration to 2-3 seconds with auto-cleanup
 
 ### Integration
 
-- [ ] T091 [US4] Add celebration state to `src/App.tsx` (showCelebration boolean)
-- [ ] T092 [US4] Modify `addTransaction` handler to trigger celebration only for income type
-- [ ] T093 [US4] Import and conditionally render IncomeAnimation component in App.tsx
-- [ ] T094 [US4] Test celebration with income transaction (should trigger)
-- [ ] T095 [US4] Test with expense transaction (should NOT trigger)
-- [ ] T096 [US4] Test with prefers-reduced-motion enabled (should respect setting)
-- [ ] T097 [US4] Test rapid multiple income additions (should handle gracefully)
+- [X] T091 [US4] Add celebration state to `src/App.tsx` (showCelebration boolean)
+- [X] T092 [US4] Modify `addTransaction` handler to trigger celebration only for income type
+- [X] T093 [US4] Import and conditionally render IncomeAnimation component in App.tsx
+- [X] T094 [US4] Test celebration with income transaction (should trigger)
+- [X] T095 [US4] Test with expense transaction (should NOT trigger)
+- [X] T096 [US4] Test with prefers-reduced-motion enabled (should respect setting)
+- [X] T097 [US4] Test rapid multiple income additions (should handle gracefully)
 
 **Checkpoint**: Income Celebration complete - Animation triggers for income only
 

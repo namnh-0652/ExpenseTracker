@@ -8,6 +8,7 @@ import { ConfirmDialog } from '@/shared/components/ConfirmDialog/ConfirmDialog';
 import { Header } from '@/shared/components/Header/Header';
 import { Footer } from '@/shared/components/Footer/Footer';
 import { TabNav } from '@/shared/components/TabNav/TabNav';
+import { IncomeAnimation } from '@/shared/components/IncomeAnimation/IncomeAnimation';
 import { ThemeProvider } from '@/features/theme/ThemeProvider';
 import { useLocalStorage } from '@/shared/hooks/useLocalStorage';
 import { TAB_STORAGE_KEY, type TabValue } from '@/shared/constants/theme';
@@ -20,6 +21,7 @@ function AppContent() {
   const [editingTransaction, setEditingTransaction] = useState<Transaction | null>(null);
   const [activeTab, setActiveTab] = useLocalStorage<TabValue>(TAB_STORAGE_KEY, 'dashboard');
   const [filters, setFilters] = useState<FilterCriteria>({});
+  const [showCelebration, setShowCelebration] = useState(false);
   const [deleteConfirm, setDeleteConfirm] = useState<{ isOpen: boolean; transactionId: string | null }>({
     isOpen: false,
     transactionId: null,
@@ -46,6 +48,10 @@ function AppContent() {
       setEditingTransaction(null);
     } else {
       addTransaction(data);
+      // Trigger celebration animation for income transactions only
+      if (data.type === 'income') {
+        setShowCelebration(true);
+      }
     }
   };
 
@@ -164,6 +170,11 @@ function AppContent() {
         onConfirm={confirmDelete}
         onCancel={cancelDelete}
       />
+      
+      {/* Income Celebration Animation */}
+      {showCelebration && (
+        <IncomeAnimation onComplete={() => setShowCelebration(false)} />
+      )}
       
       <Footer />
     </div>
