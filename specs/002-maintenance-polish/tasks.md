@@ -97,25 +97,25 @@
 
 ### Header Component
 
-- [ ] T029 [P] [US2] Create Header component structure in `src/shared/components/Header/Header.tsx`
-- [ ] T030 [P] [US2] Create Header styles in `src/shared/components/Header/Header.css`
-- [ ] T031 [US2] Add app logo/icon (💰 emoji or SVG) to Header
-- [ ] T032 [US2] Add app title "Expense Tracker" to Header
-- [ ] T033 [US2] Add responsive styles for mobile (320px+) to Header.css
+- [X] T029 [P] [US2] Create Header component structure in `src/shared/components/Header/Header.tsx`
+- [X] T030 [P] [US2] Create Header styles in `src/shared/components/Header/Header.css`
+- [X] T031 [US2] Add app logo/icon (💰 emoji or SVG) to Header
+- [X] T032 [US2] Add app title "Expense Tracker" to Header
+- [X] T033 [US2] Add responsive styles for mobile (320px+) to Header.css
 
 ### Footer Component
 
-- [ ] T034 [P] [US2] Create Footer component structure in `src/shared/components/Footer/Footer.tsx`
-- [ ] T035 [P] [US2] Create Footer styles in `src/shared/components/Footer/Footer.css`
-- [ ] T036 [US2] Add version info and credits to Footer
-- [ ] T037 [US2] Add responsive styles for mobile (320px+) to Footer.css
+- [X] T034 [P] [US2] Create Footer component structure in `src/shared/components/Footer/Footer.tsx`
+- [X] T035 [P] [US2] Create Footer styles in `src/shared/components/Footer/Footer.css`
+- [X] T036 [US2] Add version info and credits to Footer
+- [X] T037 [US2] Add responsive styles for mobile (320px+) to Footer.css
 
 ### Integration
 
-- [ ] T038 [US2] Import and add Header component to `src/App.tsx` (top of layout)
-- [ ] T039 [US2] Import and add Footer component to `src/App.tsx` (bottom of layout)
-- [ ] T040 [US2] Update `src/App.css` to accommodate header/footer layout (flexbox column)
-- [ ] T041 [US2] Test header/footer visibility across all views and screen sizes
+- [X] T038 [US2] Import and add Header component to `src/App.tsx` (top of layout)
+- [X] T039 [US2] Import and add Footer component to `src/App.tsx` (bottom of layout)
+- [X] T040 [US2] Update `src/App.css` to accommodate header/footer layout (flexbox column)
+- [X] T041 [US2] Test header/footer visibility across all views and screen sizes
 
 **Checkpoint**: Layout complete - Header and footer visible on all views
 

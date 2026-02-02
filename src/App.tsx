@@ -5,6 +5,8 @@ import { TransactionList } from '@/features/transactions/components/TransactionL
 import { Dashboard } from '@/features/dashboard/components/Dashboard/Dashboard';
 import { FilterBar } from '@/features/filters/components/FilterBar/FilterBar';
 import { ConfirmDialog } from '@/shared/components/ConfirmDialog/ConfirmDialog';
+import { Header } from '@/shared/components/Header/Header';
+import { Footer } from '@/shared/components/Footer/Footer';
 import { applyFilters, type FilterCriteria } from '@/features/filters/services/filterService';
 import type { Transaction, TransactionFormData } from '@/shared/types';
 import './App.css';
@@ -76,25 +78,22 @@ function AppContent() {
 
   return (
     <div className="app-container">
-      <header className="app-header">
-        <h1>💰 Expense Tracker</h1>
-        <p>Track your income and expenses</p>
-        
-        <nav className="app-nav">
-          <button
-            className={`nav-btn ${currentView === 'dashboard' ? 'active' : ''}`}
-            onClick={() => setCurrentView('dashboard')}
-          >
-            📊 Dashboard
-          </button>
-          <button
-            className={`nav-btn ${currentView === 'transactions' ? 'active' : ''}`}
-            onClick={() => setCurrentView('transactions')}
-          >
-            📝 Transactions
-          </button>
-        </nav>
-      </header>
+      <Header />
+
+      <nav className="app-nav">
+        <button
+          className={`nav-btn ${currentView === 'dashboard' ? 'active' : ''}`}
+          onClick={() => setCurrentView('dashboard')}
+        >
+          📊 Dashboard
+        </button>
+        <button
+          className={`nav-btn ${currentView === 'transactions' ? 'active' : ''}`}
+          onClick={() => setCurrentView('transactions')}
+        >
+          📝 Transactions
+        </button>
+      </nav>
 
       <main className="app-main">
         {currentView === 'dashboard' ? (
@@ -137,6 +136,8 @@ function AppContent() {
         onConfirm={confirmDelete}
         onCancel={cancelDelete}
       />
+      
+      <Footer />
     </div>
   );
 }
