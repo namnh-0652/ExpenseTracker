@@ -11,7 +11,7 @@ import {
   getEndOfMonth,
   formatCurrency,
   getDateRangeForPeriod
-} from '../../../src/shared/utils/dateUtils.js';
+} from '../../../src/shared/utils/dateUtils';
 
 describe('dateUtils', () => {
   describe('formatDate', () => {

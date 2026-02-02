@@ -1,32 +1,38 @@
 <!--
-Sync Impact Report - Version 1.2.0
+Sync Impact Report - Version 1.3.0
 
-VERSION CHANGE: 1.1.0 → 1.2.0
-REASON: MINOR version bump - Added new principle (III. Feature-First Code Organization)
+VERSION CHANGE: 1.2.0 → 1.3.0
+REASON: MINOR version bump - Adopted TypeScript as required language
 
 PRINCIPLES DEFINED:
 1. User-Centric Data Integrity - Financial data accuracy is paramount
 2. Progressive Enhancement - Start simple, enhance incrementally
-3. Feature-First Code Organization - Organize by domain, not layer (NEW)
+3. Feature-First Code Organization - Organize by domain, not layer
 4. Test Coverage - Every calculation and data operation must be tested
 5. Performance First - Responsive UI regardless of transaction volume
 6. Data Ownership - User maintains complete control of their data
 
 NEW SECTIONS ADDED:
-+ Principle III: Feature-First Code Organization with structure pattern and rationale
+(none - this is a tech stack amendment)
 
 MODIFIED SECTIONS:
-- Renumbered principles III→IV, IV→V, V→VI
+- Technology Stack: Added TypeScript as required language with strict mode
+- Technology Stack: Specified Vitest instead of Jest for testing
+- Technology Stack: Added type checking requirement (tsc --noEmit in CI)
+
+RATIONALE:
+TypeScript provides compile-time type safety that aligns with Principle I (Data Integrity).
+Service contracts were already defined in TypeScript syntax. Formalizing this prevents
+type-related bugs and improves developer experience.
 
 TEMPLATES REQUIRING UPDATES:
-✅ plan-template.md - Reviewed (no updates required)
+✅ plan-template.md - Reviewed (no updates required, already TS-aware)
 ✅ spec-template.md - Reviewed (no updates required)  
-✅ tasks-template.md - Reviewed (no updates required)
+✅ tasks-template.md - Reviewed (file extensions now .ts/.tsx)
 
 DOCUMENTATION REQUIRING UPDATES:
-⚠ plan.md - Update project structure section
-⚠ tasks.md - Update all file paths to feature-first structure
-⚠ quickstart.md - Update directory structure examples
+⚠ tasks.md - Update file extensions from .js/.jsx to .ts/.tsx
+⚠ quickstart.md - Update code examples to use TypeScript syntax
 
 DEFERRED ITEMS: None
 
@@ -190,25 +196,27 @@ Users MUST maintain complete control and ownership of their financial data. Vend
 
 ### Frontend (REQUIRED)
 - **Framework**: React.js (latest stable version)
-- **Rationale**: Simple, widely-adopted, excellent ecosystem for building interactive UIs
+- **Language**: TypeScript (strict mode enabled)
+- **Rationale**: Type safety prevents bugs, excellent IDE support, industry standard for robust applications
 - **State Management**: Start with React hooks (useState, useEffect); introduce Context API or Redux only if complexity demands it
 - **Styling**: CSS modules, Tailwind CSS, or plain CSS—choose based on team familiarity
-- **Build Tool**: Vite or Create React App for rapid setup
+- **Build Tool**: Vite for rapid setup and modern development experience
 
 ### Backend/Storage (FLEXIBLE)
 - **Storage**: Local Storage, IndexedDB, or simple backend API—choose based on data volume and sync requirements
 - **API**: RESTful API if backend is needed; consider starting with localStorage for MVP
-- **Language**: JavaScript/TypeScript (Node.js) if backend required
+- **Language**: TypeScript (Node.js) if backend required
 
 ### Testing
-- **Frontend**: Jest + React Testing Library for component tests
+- **Frontend**: Vitest + React Testing Library for component tests
+- **TypeScript**: Strict type checking enabled (tsc --noEmit in CI)
 - **E2E**: Optional—manual testing acceptable for initial version
 
 ### Deployment
 - **Hosting**: Static hosting (Vercel, Netlify, GitHub Pages) for frontend-only apps
 - **CI/CD**: Optional for initial version; recommended for production
 
-**Tech Stack Principle**: Choose the simplest solution that meets requirements. Don't over-engineer the backend if localStorage suffices for P1.
+**Tech Stack Principle**: Choose the simplest solution that meets requirements. TypeScript provides type safety without adding runtime complexity.
 
 ---
 
@@ -296,4 +304,4 @@ This constitution establishes non-negotiable principles for ExpenseTracker devel
 - Persistent violations require revisiting architectural decisions
 - Principles can be challenged, but not ignored
 
-**Version**: 1.2.0 | **Ratified**: 2026-01-30 | **Last Amended**: 2026-02-02
+**Version**: 1.3.0 | **Ratified**: 2026-01-30 | **Last Amended**: 2026-02-02

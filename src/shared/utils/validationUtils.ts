@@ -3,14 +3,24 @@
  * Input validation helpers for transaction data
  */
 
-import { getAllCategories } from '../constants/categories.js';
+import { getAllCategories } from '../constants/categories';
+
+export interface ValidationError {
+  field: string;
+  message: string;
+}
+
+export interface ValidationResult {
+  isValid: boolean;
+  errors: ValidationError[];
+}
 
 /**
  * Validate amount field
- * @param {number|string} amount - Amount to validate
- * @returns {string|null} Error message or null if valid
+ * @param amount - Amount to validate
+ * @returns Error message or null if valid
  */
-export function validateAmount(amount) {
+export function validateAmount(amount: number | string | null | undefined): string | null {
   if (amount === null || amount === undefined || amount === '') {
     return 'Amount is required';
   }
@@ -51,10 +61,10 @@ export function validateAmount(amount) {
 
 /**
  * Validate date field
- * @param {string} date - Date string to validate (YYYY-MM-DD)
- * @returns {string|null} Error message or null if valid
+ * @param date - Date string to validate (YYYY-MM-DD)
+ * @returns Error message or null if valid
  */
-export function validateDate(date) {
+export function validateDate(date: string | null | undefined): string | null {
   if (!date || date === null || date === undefined || date === '') {
     return 'Date is required';
   }
@@ -91,10 +101,10 @@ export function validateDate(date) {
 
 /**
  * Validate transaction type
- * @param {string} type - Type to validate
- * @returns {string|null} Error message or null if valid
+ * @param type - Type to validate
+ * @returns Error message or null if valid
  */
-export function validateType(type) {
+export function validateType(type: string | null | undefined): string | null {
   if (!type || type === null || type === undefined || type === '') {
     return 'Type is required';
   }
@@ -108,10 +118,10 @@ export function validateType(type) {
 
 /**
  * Validate category ID
- * @param {string} categoryId - Category ID to validate
- * @returns {string|null} Error message or null if valid
+ * @param categoryId - Category ID to validate
+ * @returns Error message or null if valid
  */
-export function validateCategoryId(categoryId) {
+export function validateCategoryId(categoryId: string | null | undefined): string | null {
   if (!categoryId || categoryId === null || categoryId === undefined || categoryId === '') {
     return 'Category is required';
   }
@@ -128,13 +138,18 @@ export function validateCategoryId(categoryId) {
 
 /**
  * Validate description field
- * @param {string} description - Description to validate
- * @returns {string|null} Error message or null if valid
+ * @param description - Description to validate
+ * @returns Error message or null if valid
  */
-export function validateDescription(description) {
-  // Description is optional
-  if (!description || description === null || description === undefined) {
+export function validateDescription(description: string | null | undefined): string | null {
+  // Description is optional - null, undefined, and empty string are valid
+  if (!description || description === null || description === undefined || description === '') {
     return null;
+  }
+
+  // Check for whitespace-only strings (only validate if not empty)
+  if (description.trim() === '') {
+    return null; // Allow whitespace-only as it's optional
   }
 
   if (description.length > 200) {
@@ -146,11 +161,17 @@ export function validateDescription(description) {
 
 /**
  * Validate entire transaction object
- * @param {Object} transaction - Transaction to validate
- * @returns {{isValid: boolean, errors: Array<{field: string, message: string}>}}
+ * @param transaction - Transaction to validate
+ * @returns ValidationResult with errors
  */
-export function validateTransactionObject(transaction) {
-  const errors = [];
+export function validateTransactionObject(transaction: Partial<{
+  amount: number | string;
+  date: string;
+  type: string;
+  categoryId: string;
+  description: string;
+}>): ValidationResult {
+  const errors: ValidationError[] = [];
 
   const amountError = validateAmount(transaction.amount);
   if (amountError) {

@@ -3,18 +3,29 @@
  * Global state management for transactions using React Context API
  */
 
-import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
-import { STORAGE_KEYS } from '../constants/storageKeys.js';
-import * as storageService from '../utils/storageUtils.js';
+import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
+import { STORAGE_KEYS } from '../../../shared/constants/storageKeys';
+import * as storageService from '../../../shared/utils/storageUtils';
+import { Transaction, TransactionFormData } from '../../../shared/types';
 
-const TransactionContext = createContext(undefined);
+interface TransactionContextValue {
+  transactions: Transaction[];
+  loading: boolean;
+  error: string | null;
+  addTransaction: (data: TransactionFormData) => Transaction;
+  updateTransaction: (id: string, updates: Partial<TransactionFormData>) => Transaction | null;
+  deleteTransaction: (id: string) => boolean;
+  getTransactionById: (id: string) => Transaction | null;
+}
+
+const TransactionContext = createContext<TransactionContextValue | undefined>(undefined);
 
 /**
  * Hook to access transaction context
- * @returns {Object} Transaction context value
- * @throws {Error} if used outside TransactionProvider
+ * @returns Transaction context value
+ * @throws Error if used outside TransactionProvider
  */
-export function useTransactions() {
+export function useTransactions(): TransactionContextValue {
   const context = useContext(TransactionContext);
   if (!context) {
     throw new Error('useTransactions must be used within TransactionProvider');
@@ -22,21 +33,25 @@ export function useTransactions() {
   return context;
 }
 
+interface TransactionProviderProps {
+  children: ReactNode;
+}
+
 /**
  * Transaction Provider Component
  * Wraps the app to provide transaction state and methods
  */
-export function TransactionProvider({ children }) {
-  const [transactions, setTransactions] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+export function TransactionProvider({ children }: TransactionProviderProps) {
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   // Load transactions from localStorage on mount
   useEffect(() => {
     try {
-      const loaded = storageService.load(STORAGE_KEYS.TRANSACTIONS, []);
+      const loaded = storageService.load<Transaction[]>(STORAGE_KEYS.TRANSACTIONS, []);
       // Sort by date descending (newest first)
-      const sorted = loaded.sort((a, b) => new Date(b.date) - new Date(a.date));
+      const sorted = loaded.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
       setTransactions(sorted);
       setError(null);
     } catch (err) {
@@ -49,7 +64,7 @@ export function TransactionProvider({ children }) {
   }, []);
 
   // Save transactions to localStorage whenever they change
-  const saveTransactions = useCallback((newTransactions) => {
+  const saveTransactions = useCallback((newTransactions: Transaction[]) => {
     try {
       storageService.save(STORAGE_KEYS.TRANSACTIONS, newTransactions);
       setError(null);
@@ -61,7 +76,7 @@ export function TransactionProvider({ children }) {
   }, []);
 
   // Add a new transaction
-  const addTransaction = useCallback((transactionData) => {
+  const addTransaction = useCallback((transactionData: TransactionFormData): Transaction => {
     const newTransaction = {
       ...transactionData,
       id: crypto.randomUUID(),
@@ -79,8 +94,8 @@ export function TransactionProvider({ children }) {
   }, [saveTransactions]);
 
   // Update an existing transaction
-  const updateTransaction = useCallback((id, updates) => {
-    let updatedTransaction = null;
+  const updateTransaction = useCallback((id: string, updates: Partial<TransactionFormData>): Transaction | null => {
+    let updatedTransaction: Transaction | null = null;
 
     setTransactions(prev => {
       const updated = prev.map(t => {
@@ -104,7 +119,7 @@ export function TransactionProvider({ children }) {
   }, [saveTransactions]);
 
   // Delete a transaction
-  const deleteTransaction = useCallback((id) => {
+  const deleteTransaction = useCallback((id: string): boolean => {
     let success = false;
 
     setTransactions(prev => {
@@ -120,7 +135,7 @@ export function TransactionProvider({ children }) {
   }, [saveTransactions]);
 
   // Get transaction by ID
-  const getTransactionById = useCallback((id) => {
+  const getTransactionById = useCallback((id: string): Transaction | null => {
     return transactions.find(t => t.id === id) || null;
   }, [transactions]);
 

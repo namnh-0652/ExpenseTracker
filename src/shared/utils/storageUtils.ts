@@ -3,8 +3,10 @@
  * localStorage wrapper with error handling
  */
 
-class StorageError extends Error {
-  constructor(message, originalError) {
+export class StorageError extends Error {
+  originalError?: Error;
+
+  constructor(message: string, originalError?: Error) {
     super(message);
     this.name = 'StorageError';
     this.originalError = originalError;
@@ -13,64 +15,65 @@ class StorageError extends Error {
 
 /**
  * Save data to localStorage
- * @param {string} key - Storage key
- * @param {*} data - Data to store (will be JSON.stringify'd)
+ * @param key - Storage key
+ * @param data - Data to store (will be JSON.stringify'd)
  * @throws {StorageError} if save fails
  */
-export function save(key, data) {
+export function save<T>(key: string, data: T): void {
   try {
     const serialized = JSON.stringify(data);
     localStorage.setItem(key, serialized);
   } catch (error) {
-    if (error.name === 'QuotaExceededError') {
-      throw new StorageError('Storage quota exceeded. Please clear some data.', error);
+    const err = error as Error;
+    if (err.name === 'QuotaExceededError') {
+      throw new StorageError('Storage quota exceeded. Please clear some data.', err);
     }
-    throw new StorageError(`Failed to save data to key "${key}"`, error);
+    throw new StorageError(`Failed to save data to key "${key}"`, err);
   }
 }
 
 /**
  * Load data from localStorage
- * @param {string} key - Storage key
- * @param {*} defaultValue - Value to return if key doesn't exist
- * @returns {*} Parsed data or defaultValue
+ * @param key - Storage key
+ * @param defaultValue - Value to return if key doesn't exist
+ * @returns Parsed data or defaultValue
  * @throws {StorageError} if parsing fails
  */
-export function load(key, defaultValue) {
+export function load<T>(key: string, defaultValue: T): T {
   try {
     const item = localStorage.getItem(key);
     if (item === null) {
       return defaultValue;
     }
-    return JSON.parse(item);
+    return JSON.parse(item) as T;
   } catch (error) {
-    throw new StorageError(`Failed to parse data from key "${key}"`, error);
+    throw new StorageError(`Failed to parse data from key "${key}"`, error as Error);
   }
 }
 
 /**
  * Remove data from localStorage
- * @param {string} key - Storage key
+ * @param key - Storage key
  */
-export function remove(key) {
+export function remove(key: string): void {
   localStorage.removeItem(key);
 }
 
 /**
  * Check if a key exists
- * @param {string} key - Storage key
- * @returns {boolean} true if exists
+ * @param key - Storage key
+ * @returns true if exists
  */
-export function exists(key) {
+export function exists(key: string): boolean {
   return localStorage.getItem(key) !== null;
 }
 
 /**
  * Get storage size estimate in bytes
- * @param {string} key - Storage key
- * @returns {number} Size in bytes
+ * @param key - Storage key
+ * @returns Size in bytes
  */
-export function getSize(key) {
+export function getSize(key: string): number {
   const item = localStorage.getItem(key);
   if (item === null) {
     return 0;
@@ -81,11 +84,11 @@ export function getSize(key) {
 
 /**
  * Backup data with timestamp
- * @param {string} key - Storage key to backup
- * @returns {string} Backup key name
+ * @param key - Storage key to backup
+ * @returns Backup key name
  * @throws {StorageError} if backup fails
  */
-export function backup(key) {
+export function backup(key: string): string {
   const data = load(key, null);
   if (data === null) {
     throw new StorageError(`Cannot backup non-existent key "${key}"`);
@@ -97,5 +100,3 @@ export function backup(key) {
   
   return backupKey;
 }
-
-export { StorageError };

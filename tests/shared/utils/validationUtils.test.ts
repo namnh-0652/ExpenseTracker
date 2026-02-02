@@ -6,7 +6,7 @@ import {
   validateCategoryId,
   validateDescription,
   validateTransactionObject
-} from '../../../src/shared/utils/validationUtils.js';
+} from '../../../src/shared/utils/validationUtils';
 
 describe('validationUtils', () => {
   describe('validateAmount', () => {

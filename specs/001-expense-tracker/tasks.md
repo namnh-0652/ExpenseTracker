@@ -69,23 +69,23 @@ Per Progressive Enhancement principle:
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T016 [P] [US1] Write tests/features/transactions/services/transactionService.test.js (CRUD operations, validation, persistence)
-- [ ] T017 [P] [US1] Write tests for transaction creation, update, delete, and localStorage integration
+- [X] T016 [P] [US1] Write tests/features/transactions/services/transactionService.test.js (CRUD operations, validation, persistence)
+- [X] T017 [P] [US1] Write tests for transaction creation, update, delete, and localStorage integration
 
 ### Implementation for User Story 1
 
-- [ ] T018 [US1] Implement src/features/transactions/services/transactionService.js (getAllTransactions, getTransactionById, createTransaction, updateTransaction, deleteTransaction, validateTransaction)
-- [ ] T019 [US1] Create src/features/transactions/components/TransactionForm/TransactionForm.jsx (form for creating/editing transactions)
-- [ ] T020 [P] [US1] Create src/features/transactions/components/TransactionForm/TransactionForm.css (form styling)
-- [ ] T021 [US1] Create src/features/transactions/components/TransactionList/TransactionList.jsx (display list of transactions)
-- [ ] T022 [P] [US1] Create src/features/transactions/components/TransactionList/TransactionList.css (list styling)
+- [X] T018 [US1] Implement src/features/transactions/services/transactionService.js (getAllTransactions, getTransactionById, createTransaction, updateTransaction, deleteTransaction, validateTransaction)
+- [X] T019 [US1] Create src/features/transactions/components/TransactionForm/TransactionForm.jsx (form for creating/editing transactions)
+- [X] T020 [P] [US1] Create src/features/transactions/components/TransactionForm/TransactionForm.css (form styling)
+- [X] T021 [US1] Create src/features/transactions/components/TransactionList/TransactionList.jsx (display list of transactions)
+- [X] T022 [P] [US1] Create src/features/transactions/components/TransactionList/TransactionList.css (list styling)
 - [ ] T023 [US1] Create src/shared/components/Button/Button.jsx (reusable button component)
 - [ ] T024 [P] [US1] Create src/shared/components/Input/Input.jsx (reusable input component)
-- [ ] T025 [US1] Update src/App.jsx to include TransactionProvider, TransactionForm, and TransactionList
-- [ ] T026 [P] [US1] Create src/App.css with global styles and CSS variables
-- [ ] T027 [US1] Add edit functionality to TransactionList (click to edit)
-- [ ] T028 [US1] Add delete functionality to TransactionList (delete button with confirmation)
-- [ ] T029 [US1] Implement form validation feedback (show error messages inline)
+- [X] T025 [US1] Update src/App.jsx to include TransactionProvider, TransactionForm, and TransactionList
+- [X] T026 [P] [US1] Create src/App.css with global styles and CSS variables
+- [X] T027 [US1] Add edit functionality to TransactionList (click to edit)
+- [X] T028 [US1] Add delete functionality to TransactionList (delete button with confirmation)
+- [X] T029 [US1] Implement form validation feedback (show error messages inline)
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently. **DEPLOY MVP**.
 
