@@ -99,21 +99,21 @@ Per Progressive Enhancement principle:
 
 ### Tests for User Story 2
 
-- [ ] T030 [P] [US2] Write tests/features/dashboard/services/calculationService.test.js (test all financial calculations with 90%+ coverage)
-- [ ] T031 [P] [US2] Test calculateTotalIncome, calculateTotalExpenses, calculateNetBalance, calculateCategoryBreakdown, getDateRangeForPeriod
+- [X] T030 [P] [US2] Write tests/features/dashboard/services/calculationService.test.js (test all financial calculations with 90%+ coverage)
+- [X] T031 [P] [US2] Test calculateTotalIncome, calculateTotalExpenses, calculateNetBalance, calculateCategoryBreakdown, getDateRangeForPeriod
 
 ### Implementation for User Story 2
 
-- [ ] T032 [US2] Implement src/features/dashboard/services/calculationService.js (all calculation functions from contract)
-- [ ] T033 [US2] Create src/features/dashboard/components/Dashboard/Dashboard.jsx (main dashboard component)
-- [ ] T034 [P] [US2] Create src/features/dashboard/components/Dashboard/Dashboard.css (dashboard styling with responsive layout)
-- [ ] T035 [US2] Create src/features/dashboard/components/SummaryCard/SummaryCard.jsx (display income, expenses, balance)
-- [ ] T036 [P] [US2] Create src/features/dashboard/components/CategoryChart/CategoryChart.jsx (category breakdown visualization - simple bar chart or list)
-- [ ] T037 [US2] Create src/features/dashboard/components/TimePeriodSelector/TimePeriodSelector.jsx (day/week/month toggle buttons)
-- [ ] T038 [US2] Implement date range calculation logic in Dashboard (use date-fns)
-- [ ] T039 [US2] Add Dashboard to App.jsx with navigation
-- [ ] T040 [US2] Implement useMemo optimization for dashboard calculations
-- [ ] T041 [US2] Add empty state handling (show message when no transactions in period)
+- [X] T032 [US2] Implement src/features/dashboard/services/calculationService.js (all calculation functions from contract)
+- [X] T033 [US2] Create src/features/dashboard/components/Dashboard/Dashboard.jsx (main dashboard component)
+- [X] T034 [P] [US2] Create src/features/dashboard/components/Dashboard/Dashboard.css (dashboard styling with responsive layout)
+- [X] T035 [US2] Create src/features/dashboard/components/SummaryCard/SummaryCard.jsx (display income, expenses, balance)
+- [X] T036 [P] [US2] Create src/features/dashboard/components/CategoryChart/CategoryChart.jsx (category breakdown visualization - simple bar chart or list)
+- [X] T037 [US2] Create src/features/dashboard/components/TimePeriodSelector/TimePeriodSelector.jsx (day/week/month toggle buttons)
+- [X] T038 [US2] Implement date range calculation logic in Dashboard (use date-fns)
+- [X] T039 [US2] Add Dashboard to App.jsx with navigation
+- [X] T040 [US2] Implement useMemo optimization for dashboard calculations
+- [X] T041 [US2] Add empty state handling (show message when no transactions in period)
 
 **Checkpoint**: At this point, User Story 2 should be fully functional and testable independently. **DEPLOY with P1+P2**.
 

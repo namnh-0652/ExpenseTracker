@@ -1,0 +1,51 @@
+/* Period Selector */
+.period-selector {
+  display: flex;
+  gap: 8px;
+  background: #f5f5f5;
+  padding: 4px;
+  border-radius: 8px;
+}
+
+.period-btn {
+  padding: 8px 20px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.period-btn:hover {
+  background: #e8e8e8;
+  color: #333;
+}
+
+.period-btn.active {
+  background: #007bff;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .period-selector {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .period-btn {
+    flex: 1;
+    padding: 10px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .period-btn {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+}

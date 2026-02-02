@@ -1,0 +1,138 @@
+/* Category Chart */
+.category-chart {
+  width: 100%;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #999;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 16px;
+}
+
+/* Category List */
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.category-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.category-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.category-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: #1a1a1a;
+  flex: 1;
+}
+
+.category-count {
+  font-size: 13px;
+  color: #999;
+  white-space: nowrap;
+}
+
+.category-amount {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.category-amount .amount {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.category-amount .percentage {
+  font-size: 14px;
+  font-weight: 500;
+  color: #007bff;
+  min-width: 50px;
+  text-align: right;
+}
+
+/* Category Bar */
+.category-bar {
+  width: 100%;
+  height: 8px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.category-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #007bff 0%, #0056b3 100%);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .category-list {
+    gap: 16px;
+  }
+
+  .category-amount .amount {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .category-name {
+    font-size: 14px;
+  }
+
+  .category-count {
+    font-size: 12px;
+  }
+
+  .category-amount .amount {
+    font-size: 15px;
+  }
+
+  .category-amount .percentage {
+    font-size: 13px;
+    min-width: 45px;
+  }
+
+  .category-bar {
+    height: 6px;
+  }
+}
+
+@media (max-width: 320px) {
+  .category-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .category-amount {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .category-amount .percentage {
+    text-align: left;
+  }
+}
