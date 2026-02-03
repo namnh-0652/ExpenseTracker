@@ -25,15 +25,15 @@
 
 ---
 
-## Phase 2: Data Model & Service Contracts
+## Phase 2: Data Model & Service Contracts ✅
 
 **Purpose**: Define data structures and service interfaces for balance trend calculations
 
-- [ ] T006 Create specs/003-balance-trends-chart/data-model.md documenting BalanceTrendPoint and BalanceTrendData interfaces
-- [ ] T007 [P] Create specs/003-balance-trends-chart/contracts/ directory
-- [ ] T008 Create specs/003-balance-trends-chart/contracts/trend-service-contract.md with calculateBalanceTrend signature
-- [ ] T009 [P] Document chart configuration types in data-model.md (ChartConfig interface)
-- [ ] T010 Create specs/003-balance-trends-chart/quickstart.md with integration examples and usage patterns
+- [X] T006 Create specs/003-balance-trends-chart/data-model.md documenting BalanceTrendPoint and BalanceTrendData interfaces
+- [X] T007 [P] Create specs/003-balance-trends-chart/contracts/ directory
+- [X] T008 Create specs/003-balance-trends-chart/contracts/trend-service-contract.md with calculateBalanceTrend signature
+- [X] T009 [P] Document chart configuration types in data-model.md (ChartConfig interface)
+- [X] T010 Create specs/003-balance-trends-chart/quickstart.md with integration examples and usage patterns
 
 ---
 
