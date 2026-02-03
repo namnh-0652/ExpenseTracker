@@ -5,17 +5,23 @@ import { TransactionList } from '@/features/transactions/components/TransactionL
 import { Dashboard } from '@/features/dashboard/components/Dashboard/Dashboard';
 import { FilterBar } from '@/features/filters/components/FilterBar/FilterBar';
 import { ConfirmDialog } from '@/shared/components/ConfirmDialog/ConfirmDialog';
+import { Header } from '@/shared/components/Header/Header';
+import { Footer } from '@/shared/components/Footer/Footer';
+import { TabNav } from '@/shared/components/TabNav/TabNav';
+import { IncomeAnimation } from '@/shared/components/IncomeAnimation/IncomeAnimation';
+import { ThemeProvider } from '@/features/theme/ThemeProvider';
+import { useLocalStorage } from '@/shared/hooks/useLocalStorage';
+import { TAB_STORAGE_KEY, type TabValue } from '@/shared/constants/theme';
 import { applyFilters, type FilterCriteria } from '@/features/filters/services/filterService';
 import type { Transaction, TransactionFormData } from '@/shared/types';
 import './App.css';
 
-type View = 'dashboard' | 'transactions';
-
 function AppContent() {
   const { transactions, addTransaction, updateTransaction, deleteTransaction } = useTransactions();
   const [editingTransaction, setEditingTransaction] = useState<Transaction | null>(null);
-  const [currentView, setCurrentView] = useState<View>('dashboard');
+  const [activeTab, setActiveTab] = useLocalStorage<TabValue>(TAB_STORAGE_KEY, 'dashboard');
   const [filters, setFilters] = useState<FilterCriteria>({});
+  const [showCelebration, setShowCelebration] = useState(false);
   const [deleteConfirm, setDeleteConfirm] = useState<{ isOpen: boolean; transactionId: string | null }>({
     isOpen: false,
     transactionId: null,
@@ -42,12 +48,16 @@ function AppContent() {
       setEditingTransaction(null);
     } else {
       addTransaction(data);
+      // Trigger celebration animation for income transactions only
+      if (data.type === 'income') {
+        setShowCelebration(true);
+      }
     }
   };
 
   const handleEdit = (transaction: Transaction) => {
     setEditingTransaction(transaction);
-    setCurrentView('transactions');
+    setActiveTab('transactions');
     // Scroll to form
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -76,31 +86,31 @@ function AppContent() {
 
   return (
     <div className="app-container">
-      <header className="app-header">
-        <h1>💰 Expense Tracker</h1>
-        <p>Track your income and expenses</p>
-        
-        <nav className="app-nav">
-          <button
-            className={`nav-btn ${currentView === 'dashboard' ? 'active' : ''}`}
-            onClick={() => setCurrentView('dashboard')}
-          >
-            📊 Dashboard
-          </button>
-          <button
-            className={`nav-btn ${currentView === 'transactions' ? 'active' : ''}`}
-            onClick={() => setCurrentView('transactions')}
-          >
-            📝 Transactions
-          </button>
-        </nav>
-      </header>
+      <Header />
+
+      <TabNav activeTab={activeTab} onTabChange={setActiveTab} />
 
       <main className="app-main">
-        {currentView === 'dashboard' ? (
-          <Dashboard />
-        ) : (
-          <>
+        {/* Dashboard Tab */}
+        {activeTab === 'dashboard' && (
+          <div
+            role="tabpanel"
+            id="dashboard-panel"
+            aria-labelledby="dashboard-tab"
+            className="tab-content"
+          >
+            <Dashboard />
+          </div>
+        )}
+
+        {/* Transactions Tab */}
+        {activeTab === 'transactions' && (
+          <div
+            role="tabpanel"
+            id="transactions-panel"
+            aria-labelledby="transactions-tab"
+            className="tab-content"
+          >
             <section className="form-section">
               <h2>{editingTransaction ? 'Edit Transaction' : 'Add Transaction'}</h2>
               <TransactionForm
@@ -112,18 +122,41 @@ function AppContent() {
             </section>
 
             <section className="list-section">
+              <h2>Transaction History</h2>
+              <TransactionList
+                transactions={transactions}
+                onEdit={handleEdit}
+                onDelete={handleDelete}
+              />
+            </section>
+          </div>
+        )}
+
+        {/* Filters Tab */}
+        {activeTab === 'filters' && (
+          <div
+            role="tabpanel"
+            id="filters-panel"
+            aria-labelledby="filters-tab"
+            className="tab-content"
+          >
+            <section className="filter-section">
+              <h2>Filter & Export</h2>
               <FilterBar
                 onFilterChange={setFilters}
                 activeFilterCount={activeFilterCount}
                 transactions={filteredTransactions}
               />
-              <TransactionList
-                transactions={filteredTransactions}
-                onEdit={handleEdit}
-                onDelete={handleDelete}
-              />
+              <div className="filtered-results">
+                <h3>Filtered Results ({filteredTransactions.length} transactions)</h3>
+                <TransactionList
+                  transactions={filteredTransactions}
+                  onEdit={handleEdit}
+                  onDelete={handleDelete}
+                />
+              </div>
             </section>
-          </>
+          </div>
         )}
       </main>
 
@@ -137,15 +170,24 @@ function AppContent() {
         onConfirm={confirmDelete}
         onCancel={cancelDelete}
       />
+      
+      {/* Income Celebration Animation */}
+      {showCelebration && (
+        <IncomeAnimation onComplete={() => setShowCelebration(false)} />
+      )}
+      
+      <Footer />
     </div>
   );
 }
 
 function App() {
   return (
-    <TransactionProvider>
-      <AppContent />
-    </TransactionProvider>
+    <ThemeProvider>
+      <TransactionProvider>
+        <AppContent />
+      </TransactionProvider>
+    </ThemeProvider>
   );
 }
 
