@@ -350,6 +350,7 @@ function addDays(date: string, days: number): string {
  * @param months - Number of months to add (can be negative)
  * @returns New date (ISO 8601)
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function addMonths(date: string, months: number): string {
   const d = new Date(date);
   d.setMonth(d.getMonth() + months);

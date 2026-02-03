@@ -5,7 +5,7 @@
  * Integrates Chart.js with custom hooks and utilities.
  */
 
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { Line, Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -18,7 +18,6 @@ import {
   Tooltip,
   Legend,
   Filler,
-  ChartOptions,
 } from 'chart.js';
 import { useBalanceTrends } from '@/features/dashboard/hooks/useBalanceTrends';
 import { useLocalStorage } from '@/shared/hooks/useLocalStorage';
@@ -100,7 +99,7 @@ export function BalanceTrendsChart({
   theme = 'light',
   height,
   className = '',
-}: BalanceTrendsChartProps): JSX.Element {
+}: BalanceTrendsChartProps) {
   // Chart type state with localStorage persistence (T087)
   const [chartType, setChartType] = useLocalStorage<ChartType>('balanceTrendsChartType', 'line');
 
@@ -143,8 +142,8 @@ export function BalanceTrendsChart({
   }, [data, periodType, theme, chartType]);
 
   // Chart options
-  const chartOptions = useMemo<ChartOptions<'line' | 'bar'>>(() => {
-    return {
+  const chartOptions = useMemo(() => {
+    const options: any = {
       ...DEFAULT_CHART_CONFIG,
       responsive: true,
       maintainAspectRatio: false,
@@ -162,7 +161,7 @@ export function BalanceTrendsChart({
           padding: 12,
           displayColors: false,
           callbacks: {
-            label: (context) => {
+            label: (context: any) => {
               const value = context.parsed.y;
               const index = context.dataIndex;
               const previousValue = index > 0 
@@ -196,7 +195,7 @@ export function BalanceTrendsChart({
           },
           ticks: {
             color: colors.axisLabels,
-            callback: (value) => formatChartCurrency(Number(value), { abbreviated: true }),
+            callback: (value: any) => formatChartCurrency(Number(value)),
           },
           beginAtZero: false,
         },
@@ -206,6 +205,8 @@ export function BalanceTrendsChart({
         intersect: false,
       },
     };
+    
+    return options;
   }, [colors, periodType]);
 
   // Handle loading state
