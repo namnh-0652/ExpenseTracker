@@ -88,25 +88,25 @@
 
 ---
 
-## Phase 5: Balance Trends Chart Hook
+## Phase 5: Balance Trends Chart Hook ✅
 
 **Purpose**: Custom React hook to manage chart data and state
 
 ### Tests for useBalanceTrends Hook
 
-- [ ] T037 [P] Create tests/features/dashboard/hooks/useBalanceTrends.test.ts file
-- [ ] T038 [P] Write test: hook returns balance trend data for given period
-- [ ] T039 [P] Write test: hook recalculates when transactions change
-- [ ] T040 [P] Write test: hook recalculates when period type changes
-- [ ] T041 [P] Write test: hook memoizes results to prevent unnecessary recalculations
+- [X] T037 [P] Create tests/features/dashboard/hooks/useBalanceTrends.test.ts file
+- [X] T038 [P] Write test: hook returns balance trend data for given period
+- [X] T039 [P] Write test: hook recalculates when transactions change
+- [X] T040 [P] Write test: hook recalculates when period type changes
+- [X] T041 [P] Write test: hook memoizes results to prevent unnecessary recalculations
 
 ### Implementation for useBalanceTrends Hook
 
-- [ ] T042 Create src/features/dashboard/hooks/useBalanceTrends.ts file
-- [ ] T043 Implement useBalanceTrends hook with useMemo for performance in src/features/dashboard/hooks/useBalanceTrends.ts
-- [ ] T044 Hook calls trendCalculationService.calculateBalanceTrend with current transactions and period
-- [ ] T045 Add TypeScript return type definition for hook
-- [ ] T046 Run hook tests: npm test useBalanceTrends.test.ts (all tests must pass)
+- [X] T042 Create src/features/dashboard/hooks/useBalanceTrends.ts file
+- [X] T043 Implement useBalanceTrends hook with useMemo for performance in src/features/dashboard/hooks/useBalanceTrends.ts
+- [X] T044 Hook calls trendCalculationService.calculateBalanceTrend with current transactions and period
+- [X] T045 Add TypeScript return type definition for hook
+- [X] T046 Run hook tests: npm test useBalanceTrends.test.ts (21 tests pass ✅)
 
 **Checkpoint**: Data layer complete - ready for UI components
 
