@@ -1,0 +1,137 @@
+/* Export Button Wrapper */
+.export-button-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Export Button */
+.export-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1px solid #22c55e;
+  background: white;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #22c55e;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.export-button:hover:not(:disabled) {
+  background: #22c55e;
+  color: white;
+}
+
+.export-button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.export-button:disabled {
+  border-color: #d1d5db;
+  color: #9ca3af;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.export-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.export-text {
+  font-weight: 500;
+}
+
+.export-count {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+/* Export Feedback */
+.export-feedback {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #22c55e;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+  animation: slideDown 0.3s ease-out;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.export-feedback::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #22c55e;
+}
+
+.feedback-icon {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .export-button {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .export-icon {
+    font-size: 14px;
+  }
+
+  .export-count {
+    font-size: 11px;
+  }
+
+  .export-feedback {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .export-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .export-text {
+    display: none;
+  }
+
+  .export-button .export-icon {
+    font-size: 16px;
+  }
+}

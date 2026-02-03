@@ -1,0 +1,110 @@
+/* Summary Card */
+.summary-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.summary-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.card-icon {
+  font-size: 36px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.card-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-content h3 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card-content .amount {
+  margin: 0 0 8px 0;
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.2;
+}
+
+.card-content .count {
+  font-size: 13px;
+  color: #999;
+}
+
+/* Card Type Specific Styles */
+.summary-card.income {
+  border-left: 4px solid #28a745;
+}
+
+.summary-card.expense {
+  border-left: 4px solid #dc3545;
+}
+
+.summary-card.balance.positive {
+  border-left: 4px solid #007bff;
+}
+
+.summary-card.balance.negative {
+  border-left: 4px solid #ffc107;
+}
+
+.summary-card.balance.positive .amount {
+  color: #007bff;
+}
+
+.summary-card.balance.negative .amount {
+  color: #dc3545;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .summary-card {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .card-icon {
+    font-size: 30px;
+  }
+
+  .card-content h3 {
+    font-size: 12px;
+  }
+
+  .card-content .amount {
+    font-size: 24px;
+  }
+
+  .card-content .count {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 320px) {
+  .summary-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .card-content .amount {
+    font-size: 22px;
+  }
+}

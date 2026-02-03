@@ -1,0 +1,227 @@
+.transaction-list {
+  background: var(--color-surface);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.transaction-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.transaction-list-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.transaction-count {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+.transaction-list-empty {
+  padding: var(--spacing-xl);
+  text-align: center;
+  background: var(--color-surface);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.transaction-list-empty p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+}
+
+.transaction-items {
+  display: flex;
+  flex-direction: column;
+}
+
+.transaction-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color 0.2s;
+}
+
+.transaction-item:last-child {
+  border-bottom: none;
+}
+
+.transaction-item:hover {
+  background-color: var(--color-surface-light);
+}
+
+.transaction-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.transaction-item.income .transaction-icon {
+  background-color: rgba(34, 197, 94, 0.1);
+}
+
+.transaction-item.expense .transaction-icon {
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+.transaction-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.transaction-main {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-sm);
+  margin-bottom: 4px;
+}
+
+.transaction-description {
+  font-weight: 500;
+  color: var(--color-text-primary);
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.transaction-category {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  padding: 2px 8px;
+  background-color: var(--color-surface-light);
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.transaction-meta {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.transaction-date {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+.transaction-amount {
+  flex-shrink: 0;
+  text-align: right;
+  min-width: 100px;
+}
+
+.amount {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.amount.positive {
+  color: var(--color-success);
+}
+
+.amount.negative {
+  color: var(--color-error);
+}
+
+.transaction-actions {
+  display: flex;
+  gap: var(--spacing-xs);
+  flex-shrink: 0;
+}
+
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background-color: transparent;
+  border-radius: var(--border-radius-sm);
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-icon:hover {
+  background-color: var(--color-surface-light);
+}
+
+.btn-delete:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .transaction-list-header {
+    padding: var(--spacing-md);
+  }
+
+  .transaction-item {
+    padding: var(--spacing-sm) var(--spacing-md);
+    gap: var(--spacing-sm);
+  }
+
+  .transaction-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.25rem;
+  }
+
+  .transaction-main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .transaction-description {
+    font-size: 0.9375rem;
+  }
+
+  .transaction-amount {
+    min-width: auto;
+  }
+
+  .amount {
+    font-size: 1rem;
+  }
+
+  .btn-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .transaction-actions {
+    flex-direction: column;
+  }
+
+  .transaction-amount {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+  }
+
+  .transaction-item {
+    padding-right: 120px;
+    position: relative;
+  }
+}

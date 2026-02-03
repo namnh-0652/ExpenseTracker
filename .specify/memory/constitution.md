@@ -1,33 +1,46 @@
 <!--
-Sync Impact Report - Version 1.1.0
+Sync Impact Report - Version 1.3.0
 
-VERSION CHANGE: 1.0.0 → 1.1.0
-REASON: MINOR version bump - Added Technology Stack section with React.js as primary frontend framework
+VERSION CHANGE: 1.2.0 → 1.3.0
+REASON: MINOR version bump - Adopted TypeScript as required language
 
 PRINCIPLES DEFINED:
 1. User-Centric Data Integrity - Financial data accuracy is paramount
 2. Progressive Enhancement - Start simple, enhance incrementally
-3. Test Coverage - Every calculation and data operation must be tested
-4. Performance First - Responsive UI regardless of transaction volume
-5. Data Ownership - User maintains complete control of their data
+3. Feature-First Code Organization - Organize by domain, not layer
+4. Test Coverage - Every calculation and data operation must be tested
+5. Performance First - Responsive UI regardless of transaction volume
+6. Data Ownership - User maintains complete control of their data
 
 NEW SECTIONS ADDED:
-+ Technology Stack - Defines React.js for frontend, flexible backend options
+(none - this is a tech stack amendment)
 
 MODIFIED SECTIONS:
-- None (principles unchanged)
+- Technology Stack: Added TypeScript as required language with strict mode
+- Technology Stack: Specified Vitest instead of Jest for testing
+- Technology Stack: Added type checking requirement (tsc --noEmit in CI)
+
+RATIONALE:
+TypeScript provides compile-time type safety that aligns with Principle I (Data Integrity).
+Service contracts were already defined in TypeScript syntax. Formalizing this prevents
+type-related bugs and improves developer experience.
 
 TEMPLATES REQUIRING UPDATES:
-✅ plan-template.md - Reviewed (no updates required)
+✅ plan-template.md - Reviewed (no updates required, already TS-aware)
 ✅ spec-template.md - Reviewed (no updates required)  
-✅ tasks-template.md - Reviewed (no updates required)
+✅ tasks-template.md - Reviewed (file extensions now .ts/.tsx)
+
+DOCUMENTATION REQUIRING UPDATES:
+⚠ tasks.md - Update file extensions from .js/.jsx to .ts/.tsx
+⚠ quickstart.md - Update code examples to use TypeScript syntax
 
 DEFERRED ITEMS: None
 
 NEXT STEPS:
-- Use React.js for all frontend implementation
-- Choose storage mechanism during planning phase (localStorage vs backend)
-- Select build tool (Vite recommended for speed)
+- Apply feature-first structure: src/features/[feature-name]/{components,services,hooks}
+- Move shared code to src/shared/{components,services,utils,constants}
+- Update all task file paths in tasks.md
+- Update project structure in plan.md
 -->
 
 # ExpenseTracker Constitution
@@ -71,7 +84,53 @@ Build the simplest working solution first, then enhance. Complexity MUST be just
 
 ---
 
-### III. Test Coverage for Critical Paths
+### III. Feature-First Code Organization
+
+Code MUST be organized by feature (domain), not by technical layer. Each feature is a self-contained module with its own components, services, and logic.
+
+**Rules:**
+- Structure by business capability: `features/transactions/`, `features/dashboard/`, `features/filters/`
+- Each feature folder contains its own: `components/`, `services/`, `hooks/`, `utils/` (if needed)
+- Shared/reusable code lives in `shared/` directory (utilities, common components, constants)
+- Feature folders map directly to user stories from spec (enables independent development)
+- No top-level `components/`, `services/`, `utils/` folders outside of features
+
+**Rationale:** Feature-first organization improves:
+- **Developer productivity**: Find all related code in one place
+- **Independent development**: Teams/developers can work on different features without conflicts
+- **Scalability**: Easy to add/remove features without touching other code
+- **Understanding**: New developers immediately see what the app does by looking at feature folders
+- **Testing**: Each feature can be tested in isolation
+
+**Structure Pattern:**
+```
+src/
+├── features/
+│   ├── [feature-name]/
+│   │   ├── components/       # Feature-specific UI
+│   │   ├── services/         # Feature-specific business logic
+│   │   ├── hooks/            # Feature-specific React hooks
+│   │   └── utils/            # Feature-specific helpers (optional)
+│   └── [another-feature]/
+├── shared/                   # Code used by multiple features
+│   ├── components/           # Reusable UI components
+│   ├── services/             # Cross-cutting services
+│   ├── utils/                # Common utilities
+│   └── constants/            # App-wide constants
+└── App.jsx                   # Root component
+```
+
+**Anti-pattern (Layer-First) - DO NOT USE:**
+```
+src/
+├── components/               # ❌ All components mixed together
+├── services/                 # ❌ All services mixed together
+└── utils/                    # ❌ All utils mixed together
+```
+
+---
+
+### IV. Test Coverage for Critical Paths
 
 Not all code requires equal test coverage. Focus testing effort on financial calculations, data operations, and user-facing features.
 
@@ -95,7 +154,7 @@ Not all code requires equal test coverage. Focus testing effort on financial cal
 
 ---
 
-### IV. Performance First
+### V. Performance First
 
 Application MUST remain responsive regardless of transaction volume. Performance is a feature, not an optimization.
 
@@ -116,7 +175,7 @@ Application MUST remain responsive regardless of transaction volume. Performance
 
 ---
 
-### V. Data Ownership and Portability
+### VI. Data Ownership and Portability
 
 Users MUST maintain complete control and ownership of their financial data. Vendor lock-in is unacceptable.
 
@@ -137,25 +196,27 @@ Users MUST maintain complete control and ownership of their financial data. Vend
 
 ### Frontend (REQUIRED)
 - **Framework**: React.js (latest stable version)
-- **Rationale**: Simple, widely-adopted, excellent ecosystem for building interactive UIs
+- **Language**: TypeScript (strict mode enabled)
+- **Rationale**: Type safety prevents bugs, excellent IDE support, industry standard for robust applications
 - **State Management**: Start with React hooks (useState, useEffect); introduce Context API or Redux only if complexity demands it
 - **Styling**: CSS modules, Tailwind CSS, or plain CSS—choose based on team familiarity
-- **Build Tool**: Vite or Create React App for rapid setup
+- **Build Tool**: Vite for rapid setup and modern development experience
 
 ### Backend/Storage (FLEXIBLE)
 - **Storage**: Local Storage, IndexedDB, or simple backend API—choose based on data volume and sync requirements
 - **API**: RESTful API if backend is needed; consider starting with localStorage for MVP
-- **Language**: JavaScript/TypeScript (Node.js) if backend required
+- **Language**: TypeScript (Node.js) if backend required
 
 ### Testing
-- **Frontend**: Jest + React Testing Library for component tests
+- **Frontend**: Vitest + React Testing Library for component tests
+- **TypeScript**: Strict type checking enabled (tsc --noEmit in CI)
 - **E2E**: Optional—manual testing acceptable for initial version
 
 ### Deployment
 - **Hosting**: Static hosting (Vercel, Netlify, GitHub Pages) for frontend-only apps
 - **CI/CD**: Optional for initial version; recommended for production
 
-**Tech Stack Principle**: Choose the simplest solution that meets requirements. Don't over-engineer the backend if localStorage suffices for P1.
+**Tech Stack Principle**: Choose the simplest solution that meets requirements. TypeScript provides type safety without adding runtime complexity.
 
 ---
 
@@ -243,4 +304,4 @@ This constitution establishes non-negotiable principles for ExpenseTracker devel
 - Persistent violations require revisiting architectural decisions
 - Principles can be challenged, but not ignored
 
-**Version**: 1.1.0 | **Ratified**: 2026-01-30 | **Last Amended**: 2026-01-30
+**Version**: 1.3.0 | **Ratified**: 2026-01-30 | **Last Amended**: 2026-02-02
