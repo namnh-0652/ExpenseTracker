@@ -5,7 +5,7 @@
  * Integrates Chart.js with custom hooks and utilities.
  */
 
-import React, { useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { Line, Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -21,6 +21,7 @@ import {
   ChartOptions,
 } from 'chart.js';
 import { useBalanceTrends } from '@/features/dashboard/hooks/useBalanceTrends';
+import { useLocalStorage } from '@/shared/hooks/useLocalStorage';
 import { ChartTypeToggle, ChartType } from './ChartTypeToggle';
 import {
   getChartColorsByTheme,
@@ -100,8 +101,8 @@ export function BalanceTrendsChart({
   height,
   className = '',
 }: BalanceTrendsChartProps): JSX.Element {
-  // Chart type state (line or bar)
-  const [chartType, setChartType] = useState<ChartType>('line');
+  // Chart type state with localStorage persistence (T087)
+  const [chartType, setChartType] = useLocalStorage<ChartType>('balanceTrendsChartType', 'line');
 
   // Calculate balance trends using custom hook
   const { data, isLoading, error } = useBalanceTrends(transactions, periodType);
