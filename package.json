@@ -13,8 +13,10 @@
     "test:coverage": "vitest --coverage"
   },
   "dependencies": {
+    "chart.js": "^4.5.1",
     "date-fns": "^4.1.0",
     "react": "^19.2.0",
+    "react-chartjs-2": "^5.3.1",
     "react-dom": "^19.2.0",
     "uuid": "^13.0.0"
   },
@@ -23,6 +25,7 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
+    "@types/chart.js": "^2.9.41",
     "@types/node": "^25.2.0",
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
