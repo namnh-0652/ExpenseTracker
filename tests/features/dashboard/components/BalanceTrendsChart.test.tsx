@@ -28,7 +28,7 @@ vi.mock('react-chartjs-2', () => ({
 
 // Mock useBalanceTrends hook
 vi.mock('@/features/dashboard/hooks/useBalanceTrends', () => ({
-  useBalanceTrends: vi.fn((transactions, periodType) => {
+  useBalanceTrends: vi.fn((_transactions, periodType) => {
     // Return different data based on period type
     const baseData = {
       period: {
@@ -82,6 +82,7 @@ describe('BalanceTrendsChart', () => {
     date: '2026-01-15',
     type: 'income',
     categoryId: 'cat-1',
+    categoryName: 'Salary',
     description: 'Test transaction',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),

@@ -344,20 +344,6 @@ function addDays(date: string, days: number): string {
 }
 
 /**
- * Add months to a date
- * 
- * @param date - Starting date (ISO 8601)
- * @param months - Number of months to add (can be negative)
- * @returns New date (ISO 8601)
- */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function addMonths(date: string, months: number): string {
-  const d = new Date(date);
-  d.setMonth(d.getMonth() + months);
-  return d.toISOString().split('T')[0];
-}
-
-/**
  * Validate ISO 8601 date format (YYYY-MM-DD)
  * 
  * @param date - Date string to validate

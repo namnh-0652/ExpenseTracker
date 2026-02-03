@@ -69,11 +69,8 @@ export const DEFAULT_SCALES_CONFIG: ChartOptions['scales'] = {
   x: {
     grid: {
       display: true,
-      drawBorder: false,
     },
     ticks: {
-      maxRotation: 45,
-      minRotation: 0,
       autoSkip: true,
       maxTicksLimit: 12,
     },
@@ -81,7 +78,6 @@ export const DEFAULT_SCALES_CONFIG: ChartOptions['scales'] = {
   y: {
     grid: {
       display: true,
-      drawBorder: false,
     },
     ticks: {
       maxTicksLimit: 8,

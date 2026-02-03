@@ -25,13 +25,16 @@ import { useTransactions } from '@/features/transactions/hooks/useTransactions';
 const mockUseTransactions = useTransactions as unknown as ReturnType<typeof vi.fn>;
 
 describe('Dashboard - Phase 9 Integration', () => {
-  const createTestTransaction = (overrides: Partial<Transaction>): Transaction => ({
+  const createTestTransaction = (
+    overrides: Partial<Transaction>,
+  ): Transaction => ({
     id: `tx-${Math.random()}`,
     amount: 100,
-    date: '2026-01-15',
-    type: 'income',
-    categoryId: 'cat-1',
-    description: 'Test transaction',
+    date: "2026-01-15",
+    type: "income",
+    categoryId: "cat-1",
+    categoryName: "Salary",
+    description: "Test transaction",
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
     ...overrides,
@@ -231,7 +234,7 @@ describe('Dashboard - Phase 9 Integration', () => {
     });
 
     it('should re-render chart with new data when period changes', async () => {
-      const { rerender } = render(<Dashboard />);
+      render(<Dashboard />);
 
       const initialChart = screen.queryByTestId('line-chart') || screen.queryByTestId('bar-chart');
       expect(initialChart).toBeInTheDocument();
@@ -274,7 +277,6 @@ describe('Dashboard - Phase 9 Integration', () => {
       render(<Dashboard />);
 
       const balanceTrendsSection = screen.getByTestId('balance-trends-section');
-      const styles = window.getComputedStyle(balanceTrendsSection);
       
       // Should have margin for spacing
       expect(balanceTrendsSection).toBeInTheDocument();

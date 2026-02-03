@@ -18,13 +18,16 @@ import type { TimePeriod, DateRange } from '@/features/dashboard/types/trendType
 
 describe('trendCalculationService', () => {
   // Test data setup
-  const createTestTransaction = (overrides: Partial<Transaction>): Transaction => ({
+  const createTestTransaction = (
+    overrides: Partial<Transaction>,
+  ): Transaction => ({
     id: `tx-${Math.random()}`,
     amount: 100,
-    date: '2026-01-15',
-    type: 'income',
-    categoryId: 'cat-1',
-    description: 'Test transaction',
+    date: "2026-01-15",
+    type: "income",
+    categoryId: "cat-1",
+    categoryName: "Salary",
+    description: "Test transaction",
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
     ...overrides,

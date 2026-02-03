@@ -16,6 +16,7 @@ describe('useBalanceTrends', () => {
     date: '2026-01-15',
     type: 'income',
     categoryId: 'cat-1',
+    categoryName: 'Salary',
     description: 'Test transaction',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -162,14 +163,15 @@ describe('useBalanceTrends', () => {
   describe('T040: hook recalculates when period type changes', () => {
     it('should recalculate when switching from day to week', () => {
       const { result, rerender } = renderHook(
-        ({ periodType }) => useBalanceTrends(testTransactions, periodType),
-        { initialProps: { periodType: 'day' as const } }
+        ({ periodType }: { periodType: "day" | "week" | "month" }) =>
+          useBalanceTrends(testTransactions, periodType),
+        { initialProps: { periodType: "day" } },
       );
 
       expect(result.current.data?.period.type).toBe('day');
       expect(result.current.data?.points).toHaveLength(30);
 
-      rerender({ periodType: 'week' as const });
+      rerender({ periodType: 'week' });
 
       expect(result.current.data?.period.type).toBe('week');
       expect(result.current.data?.points).toHaveLength(12);
@@ -177,21 +179,23 @@ describe('useBalanceTrends', () => {
 
     it('should recalculate when switching from week to month', () => {
       const { result, rerender } = renderHook(
-        ({ periodType }) => useBalanceTrends(testTransactions, periodType),
-        { initialProps: { periodType: 'week' as const } }
+        ({ periodType }: { periodType: "day" | "week" | "month" }) =>
+          useBalanceTrends(testTransactions, periodType),
+        { initialProps: { periodType: "week" } },
       );
 
       expect(result.current.data?.period.type).toBe('week');
 
-      rerender({ periodType: 'month' as const });
+      rerender({ periodType: 'month' });
 
       expect(result.current.data?.period.type).toBe('month');
     });
 
     it('should maintain correct data after multiple period changes', () => {
       const { result, rerender } = renderHook(
-        ({ periodType }) => useBalanceTrends(testTransactions, periodType),
-        { initialProps: { periodType: 'day' as const } }
+        ({ periodType }: { periodType: "day" | "week" | "month" }) =>
+          useBalanceTrends(testTransactions, periodType),
+        { initialProps: { periodType: "day" } },
       );
 
       // Day -> Week
@@ -245,14 +249,14 @@ describe('useBalanceTrends', () => {
 
     it('should return new data reference when period type changes', () => {
       const { result, rerender } = renderHook(
-        ({ periodType }) => useBalanceTrends(testTransactions, periodType),
-        { initialProps: { periodType: 'day' as const } }
+        ({ periodType }: { periodType: 'day' | 'week' | 'month' }) => useBalanceTrends(testTransactions, periodType),
+        { initialProps: { periodType: 'day' } }
       );
 
       const firstData = result.current.data;
 
       // Change period type
-      rerender({ periodType: 'week' as const });
+      rerender({ periodType: 'week' });
 
       const secondData = result.current.data;
 

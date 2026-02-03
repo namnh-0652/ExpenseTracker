@@ -64,7 +64,7 @@ describe('useLocalStorage', () => {
       );
 
       act(() => {
-        result.current[1](complexObject);
+        return result.current[1](complexObject);
       });
 
       expect(result.current[0]).toEqual(complexObject);
