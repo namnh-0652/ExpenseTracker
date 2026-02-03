@@ -26,6 +26,55 @@ vi.mock('react-chartjs-2', () => ({
   )),
 }));
 
+// Mock useBalanceTrends hook
+vi.mock('@/features/dashboard/hooks/useBalanceTrends', () => ({
+  useBalanceTrends: vi.fn((transactions, periodType) => {
+    // Return different data based on period type
+    const baseData = {
+      period: {
+        start: '2025-12-01',
+        end: '2026-01-20',
+        type: periodType,
+      },
+      startingBalance: 1000,
+      endingBalance: 1175,
+      change: 175,
+      changePercentage: 17.5,
+      totalIncome: 1450,
+      totalExpense: 275,
+    };
+
+    // Different points for different period types (to simulate real behavior)
+    const pointsByPeriod = {
+      day: [
+        { date: '2025-12-01', balance: 1000, income: 1000, expense: 0 },
+        { date: '2025-12-15', balance: 800, income: 0, expense: 200 },
+        { date: '2026-01-10', balance: 1100, income: 300, expense: 0 },
+        { date: '2026-01-15', balance: 1250, income: 150, expense: 0 },
+        { date: '2026-01-20', balance: 1175, income: 0, expense: 75 },
+      ],
+      week: [
+        { date: '2025-12-01', balance: 1000, income: 1000, expense: 0 },
+        { date: '2025-12-08', balance: 800, income: 0, expense: 200 },
+        { date: '2026-01-12', balance: 1175, income: 450, expense: 75 },
+      ],
+      month: [
+        { date: '2025-12-01', balance: 800, income: 1000, expense: 200 },
+        { date: '2026-01-01', balance: 1175, income: 450, expense: 75 },
+      ],
+    };
+
+    return {
+      data: {
+        points: pointsByPeriod[periodType as 'day' | 'week' | 'month'] || pointsByPeriod.day,
+        ...baseData,
+      },
+      isLoading: false,
+      error: null,
+    };
+  }),
+}));
+
 describe('BalanceTrendsChart', () => {
   const createTestTransaction = (overrides: Partial<Transaction>): Transaction => ({
     id: `tx-${Math.random()}`,
@@ -49,6 +98,10 @@ describe('BalanceTrendsChart', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    // Clear localStorage before each test
+    localStorage.clear();
+    // Set default chart type
+    localStorage.setItem('balanceTrendsChartType', '"line"');
   });
 
   describe('T062: renders chart with sample data', () => {
