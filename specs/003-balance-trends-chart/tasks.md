@@ -13,15 +13,15 @@
 
 ---
 
-## Phase 1: Setup & Research
+## Phase 1: Setup & Research ✅
 
 **Purpose**: Library selection and project configuration for chart integration
 
-- [ ] T001 Research Chart.js vs Recharts: bundle size, TypeScript support, accessibility, mobile responsiveness
-- [ ] T002 Document library decision in specs/003-balance-trends-chart/research.md with bundle size comparison
-- [ ] T003 Install chosen charting library and type definitions (npm install chart.js react-chartjs-2 @types/react-chartjs-2 or recharts)
-- [ ] T004 [P] Document balance calculation strategy in specs/003-balance-trends-chart/research.md (cumulative vs period-relative)
-- [ ] T005 [P] Document data point granularity decisions in research.md (30 days / 12 weeks / 12 months)
+- [X] T001 Research Chart.js vs Recharts: bundle size, TypeScript support, accessibility, mobile responsiveness
+- [X] T002 Document library decision in specs/003-balance-trends-chart/research.md with bundle size comparison
+- [X] T003 Install chosen charting library and type definitions (chart.js@4.5.1 + react-chartjs-2@5.3.1 + @types/chart.js)
+- [X] T004 [P] Document balance calculation strategy in specs/003-balance-trends-chart/research.md (cumulative vs period-relative)
+- [X] T005 [P] Document data point granularity decisions in research.md (30 days / 12 weeks / 12 months)
 
 ---
 
