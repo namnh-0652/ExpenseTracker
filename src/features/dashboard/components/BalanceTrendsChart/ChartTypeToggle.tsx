@@ -4,7 +4,7 @@
  * Toggle buttons to switch between line and bar chart types.
  */
 
-import React from 'react';
+import React, { JSX } from 'react';
 import './ChartTypeToggle.css';
 
 /**

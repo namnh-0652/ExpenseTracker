@@ -1,0 +1,240 @@
+/**
+ * BalanceTrendsChart Component Styles
+ * 
+ * Styles for the main balance trends chart component.
+ */
+
+.balance-trends-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  padding: 20px;
+  background-color: var(--bg-card, #ffffff);
+  border-radius: var(--border-radius-lg, 12px);
+  box-shadow: var(--shadow-md, 0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+/* Header */
+.balance-trends-chart__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Chart container */
+.balance-trends-chart__container {
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+}
+
+/* Loading state */
+.balance-trends-chart__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  color: var(--text-secondary, #6b7280);
+  font-size: var(--font-size-base, 16px);
+}
+
+/* Empty state */
+.balance-trends-chart__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.empty-state-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.empty-state-message {
+  font-size: var(--font-size-lg, 18px);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--text-primary, #111827);
+  margin: 0 0 8px 0;
+}
+
+.empty-state-hint {
+  font-size: var(--font-size-sm, 14px);
+  color: var(--text-secondary, #6b7280);
+  margin: 0;
+}
+
+/* Summary statistics */
+.balance-trends-chart__summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color, #e5e7eb);
+}
+
+.summary-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.summary-stat__label {
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--text-secondary, #6b7280);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.summary-stat__value {
+  font-size: var(--font-size-lg, 18px);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--text-primary, #111827);
+}
+
+.summary-stat__value--positive {
+  color: var(--color-success, #22c55e);
+}
+
+.summary-stat__value--negative {
+  color: var(--color-danger, #ef4444);
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .balance-trends-chart {
+    background-color: var(--bg-card-dark, #1f2937);
+  }
+
+  .empty-state-message {
+    color: var(--text-primary-dark, #f9fafb);
+  }
+
+  .empty-state-hint {
+    color: var(--text-secondary-dark, #9ca3af);
+  }
+
+  .balance-trends-chart__loading {
+    color: var(--text-secondary-dark, #9ca3af);
+  }
+
+  .balance-trends-chart__summary {
+    border-top-color: var(--border-color-dark, #374151);
+  }
+
+  .summary-stat__label {
+    color: var(--text-secondary-dark, #9ca3af);
+  }
+
+  .summary-stat__value {
+    color: var(--text-primary-dark, #f9fafb);
+  }
+
+  .summary-stat__value--positive {
+    color: var(--color-success-dark, #4ade80);
+  }
+
+  .summary-stat__value--negative {
+    color: var(--color-danger-dark, #f87171);
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .balance-trends-chart {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .balance-trends-chart__header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .balance-trends-chart__container {
+    min-height: 250px;
+  }
+
+  .balance-trends-chart__summary {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .summary-stat {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .summary-stat:last-child {
+    border-bottom: none;
+  }
+
+  .summary-stat__label {
+    font-size: var(--font-size-sm, 14px);
+  }
+
+  .summary-stat__value {
+    font-size: var(--font-size-base, 16px);
+  }
+}
+
+@media (max-width: 640px) {
+  .balance-trends-chart {
+    padding: 12px;
+  }
+
+  .empty-state-icon {
+    font-size: 48px;
+  }
+
+  .empty-state-message {
+    font-size: var(--font-size-base, 16px);
+  }
+
+  .empty-state-hint {
+    font-size: var(--font-size-xs, 12px);
+  }
+}
+
+/* Tablet */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .balance-trends-chart__summary {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .balance-trends-chart {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+
+  .balance-trends-chart__header {
+    display: none;
+  }
+
+  .balance-trends-chart__summary {
+    page-break-inside: avoid;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
