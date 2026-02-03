@@ -9,6 +9,7 @@ export interface Transaction {
   date: string;  // YYYY-MM-DD
   type: 'income' | 'expense';
   categoryId: string;
+  categoryName: string;
   description: string;
   createdAt: string;  // ISO 8601
   updatedAt: string;  // ISO 8601

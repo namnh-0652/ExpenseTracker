@@ -3,7 +3,7 @@
  * Tests for CSV export functionality
  */
 
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
 import {
   exportToCSV,
   downloadCSV,
@@ -205,14 +205,15 @@ describe('exportService', () => {
     it('should escape category names with special characters', () => {
       const specialTransactions: Transaction[] = [
         {
-          id: '1',
-          type: 'expense',
-          amount: 10.00,
-          categoryId: 'food',
-          description: 'Lunch',
-          date: '2026-01-30',
-          createdAt: '2026-01-30T12:00:00.000Z',
-          updatedAt: '2026-01-30T12:00:00.000Z',
+          id: "1",
+          type: "expense",
+          amount: 10.0,
+          categoryId: "food",
+          categoryName: "Food & Dining",
+          description: "Lunch",
+          date: "2026-01-30",
+          createdAt: "2026-01-30T12:00:00.000Z",
+          updatedAt: "2026-01-30T12:00:00.000Z",
         },
       ];
       

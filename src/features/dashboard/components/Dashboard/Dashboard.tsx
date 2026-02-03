@@ -7,6 +7,7 @@ import {
 import { SummaryCard } from '@/features/dashboard/components/SummaryCard/SummaryCard';
 import { CategoryChart } from '@/features/dashboard/components/CategoryChart/CategoryChart';
 import { TimePeriodSelector } from '@/features/dashboard/components/TimePeriodSelector/TimePeriodSelector';
+import { BalanceTrendsChart } from '@/features/dashboard/components/BalanceTrendsChart/BalanceTrendsChart';
 import './Dashboard.css';
 
 export const Dashboard: React.FC = () => {
@@ -56,7 +57,7 @@ export const Dashboard: React.FC = () => {
   };
 
   return (
-    <div className="dashboard">
+    <div className="dashboard" data-testid="dashboard">
       <div className="dashboard-header">
         <div className="dashboard-title">
           <h2>Dashboard</h2>
@@ -69,7 +70,7 @@ export const Dashboard: React.FC = () => {
         />
       </div>
 
-      <div className="summary-cards">
+      <div className="summary-cards" data-testid="summary-cards">
         <SummaryCard
           type="income"
           title="Total Income"
@@ -93,7 +94,15 @@ export const Dashboard: React.FC = () => {
         />
       </div>
 
-      <div className="category-breakdown">
+      <div className="balance-trends-section" data-testid="balance-trends-section">
+        <h3>Balance Trends</h3>
+        <BalanceTrendsChart
+          transactions={transactions}
+          periodType={periodType}
+        />
+      </div>
+
+      <div className="category-breakdown" data-testid="category-breakdown">
         <h3>Category Breakdown</h3>
         <CategoryChart categories={dashboardData.categoryBreakdown} />
       </div>

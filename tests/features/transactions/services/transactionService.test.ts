@@ -27,24 +27,26 @@ vi.mock('@/shared/services/categoryService', () => ({
 describe('transactionService', () => {
   const mockTransactions: Transaction[] = [
     {
-      id: '1',
+      id: "1",
       amount: 50.5,
-      date: '2026-01-30',
-      type: 'expense',
-      categoryId: 'food',
-      description: 'Lunch',
-      createdAt: '2026-01-30T10:00:00.000Z',
-      updatedAt: '2026-01-30T10:00:00.000Z',
+      date: "2026-01-30",
+      type: "expense",
+      categoryId: "food",
+      categoryName: "Food & Dining",
+      description: "Lunch",
+      createdAt: "2026-01-30T10:00:00.000Z",
+      updatedAt: "2026-01-30T10:00:00.000Z",
     },
     {
-      id: '2',
+      id: "2",
       amount: 1000,
-      date: '2026-01-25',
-      type: 'income',
-      categoryId: 'salary',
-      description: 'Monthly salary',
-      createdAt: '2026-01-25T09:00:00.000Z',
-      updatedAt: '2026-01-25T09:00:00.000Z',
+      date: "2026-01-25",
+      type: "income",
+      categoryId: "salary",
+      categoryName: "Salary",
+      description: "Monthly salary",
+      createdAt: "2026-01-25T09:00:00.000Z",
+      updatedAt: "2026-01-25T09:00:00.000Z",
     },
   ];
 
@@ -107,10 +109,11 @@ describe('transactionService', () => {
   describe('createTransaction', () => {
     const validTransactionData: TransactionFormData = {
       amount: 75.25,
-      date: '2026-01-31',
-      type: 'expense',
-      categoryId: 'food',
-      description: 'Dinner',
+      date: "2026-01-31",
+      type: "expense",
+      categoryId: "food",
+      categoryName: "Food & Dining",
+      description: "Dinner",
     };
 
     beforeEach(() => {

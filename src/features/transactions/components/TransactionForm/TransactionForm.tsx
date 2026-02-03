@@ -85,6 +85,7 @@ export const TransactionForm: React.FC<TransactionFormProps> = ({
       date,
       type,
       categoryId,
+      categoryName: categories.find(cat => cat.id === categoryId)?.name || '',
       description: description.trim(),
     };
 

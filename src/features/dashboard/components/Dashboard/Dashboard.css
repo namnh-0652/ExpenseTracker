@@ -37,6 +37,22 @@
   margin-bottom: 40px;
 }
 
+/* Balance Trends Section */
+.balance-trends-section {
+  background: var(--color-surface);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 40px;
+  box-shadow: var(--shadow-md);
+}
+
+.balance-trends-section h3 {
+  margin: 0 0 20px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
 /* Category Breakdown Container */
 .category-breakdown {
   background: var(--color-surface);
@@ -74,6 +90,16 @@
     margin-bottom: 24px;
   }
 
+  .balance-trends-section {
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+
+  .balance-trends-section h3 {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
   .category-breakdown {
     padding: 20px;
   }
@@ -94,6 +120,16 @@
 
   .period-label {
     font-size: 13px;
+  }
+
+  .balance-trends-section {
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+
+  .balance-trends-section h3 {
+    font-size: 15px;
+    margin-bottom: 12px;
   }
 
   .category-breakdown {

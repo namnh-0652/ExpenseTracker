@@ -1,0 +1,146 @@
+/**
+ * ChartTypeToggle Component Styles
+ * 
+ * Styles for the chart type toggle button group.
+ */
+
+.chart-type-toggle {
+  display: inline-flex;
+  gap: 0;
+  border-radius: var(--border-radius-md, 8px);
+  background-color: var(--bg-secondary, #f3f4f6);
+  padding: 4px;
+  box-shadow: var(--shadow-sm, 0 1px 2px rgba(0, 0, 0, 0.05));
+}
+
+.chart-type-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: none;
+  background-color: transparent;
+  color: var(--text-secondary, #6b7280);
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-medium, 500);
+  border-radius: var(--border-radius-sm, 6px);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Icon */
+.chart-type-icon {
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+/* Label */
+.chart-type-label {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-medium, 500);
+}
+
+/* Hover state */
+.chart-type-button:hover:not(.chart-type-button--active) {
+  background-color: var(--bg-hover, rgba(0, 0, 0, 0.04));
+  color: var(--text-primary, #111827);
+}
+
+/* Focus state */
+.chart-type-button:focus-visible {
+  outline: 2px solid var(--color-primary, #3b82f6);
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+/* Active state */
+.chart-type-button--active {
+  background-color: var(--bg-active, #ffffff);
+  color: var(--color-primary, #3b82f6);
+  font-weight: var(--font-weight-semibold, 600);
+  box-shadow: var(--shadow-sm, 0 1px 2px rgba(0, 0, 0, 0.05));
+}
+
+/* Pressed state (while clicking) */
+.chart-type-button:active {
+  transform: scale(0.98);
+}
+
+/* Disabled state */
+.chart-type-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.chart-type-button:disabled:hover {
+  background-color: transparent;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .chart-type-toggle {
+    background-color: var(--bg-secondary-dark, #1f2937);
+  }
+
+  .chart-type-button {
+    color: var(--text-secondary-dark, #9ca3af);
+  }
+
+  .chart-type-button:hover:not(.chart-type-button--active) {
+    background-color: var(--bg-hover-dark, rgba(255, 255, 255, 0.08));
+    color: var(--text-primary-dark, #f9fafb);
+  }
+
+  .chart-type-button--active {
+    background-color: var(--bg-active-dark, #374151);
+    color: var(--color-primary-dark, #60a5fa);
+  }
+
+  .chart-type-button:focus-visible {
+    outline-color: var(--color-primary-dark, #60a5fa);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .chart-type-button {
+    transition: none;
+  }
+
+  .chart-type-button:active {
+    transform: none;
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 640px) {
+  .chart-type-toggle {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .chart-type-button {
+    flex: 1;
+    justify-content: center;
+    padding: 10px 12px;
+  }
+
+  .chart-type-label {
+    font-size: var(--font-size-xs, 12px);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .chart-type-button {
+    border: 1px solid currentColor;
+  }
+
+  .chart-type-button--active {
+    border: 2px solid var(--color-primary, #3b82f6);
+  }
+}
