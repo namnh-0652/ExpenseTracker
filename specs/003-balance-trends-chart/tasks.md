@@ -72,17 +72,19 @@
 
 ---
 
-## Phase 4: Chart Utilities & Constants
+## Phase 4: Chart Utilities & Constants ✅
 
 **Purpose**: Shared utilities for chart formatting and configuration
 
-- [ ] T030 [P] Create src/shared/constants/chartConstants.ts with default chart configuration
-- [ ] T031 [P] Define chart color constants in src/shared/constants/chartConstants.ts (map to theme variables)
-- [ ] T032 [P] Create src/shared/utils/chartUtils.ts file
-- [ ] T033 [P] Implement formatChartDate function in src/shared/utils/chartUtils.ts (date formatting for axis labels)
-- [ ] T034 [P] Implement formatChartCurrency function in src/shared/utils/chartUtils.ts (currency formatting for tooltips)
-- [ ] T035 [P] Implement getChartColorsByTheme function in src/shared/utils/chartUtils.ts (light/dark theme colors)
-- [ ] T036 [P] Create tests/shared/utils/chartUtils.test.ts and test all utility functions
+- [X] T030 [P] Create src/shared/constants/chartConstants.ts with default chart configuration
+- [X] T031 [P] Define chart color constants in src/shared/constants/chartConstants.ts (map to theme variables)
+- [X] T032 [P] Create src/shared/utils/chartUtils.ts file
+- [X] T033 [P] Implement formatChartDate function in src/shared/utils/chartUtils.ts (date formatting for axis labels)
+- [X] T034 [P] Implement formatChartCurrency function in src/shared/utils/chartUtils.ts (currency formatting for tooltips)
+- [X] T035 [P] Implement getChartColorsByTheme function in src/shared/utils/chartUtils.ts (light/dark theme colors)
+- [X] T036 [P] Create tests/shared/utils/chartUtils.test.ts and test all utility functions (58 tests pass ✅)
+
+
 
 ---
 
