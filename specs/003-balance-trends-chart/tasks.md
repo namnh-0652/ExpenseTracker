@@ -112,29 +112,29 @@
 
 ---
 
-## Phase 6: Chart Type Toggle Component
+## Phase 6: Chart Type Toggle Component ✅
 
 **Purpose**: Control to switch between line and bar chart views
 
 ### Tests for ChartTypeToggle Component
 
-- [ ] T047 [P] Create tests/features/dashboard/components/ChartTypeToggle.test.tsx file
-- [ ] T048 [P] Write test: renders line and bar buttons
-- [ ] T049 [P] Write test: active button has correct styling
-- [ ] T050 [P] Write test: clicking button calls onTypeChange callback
-- [ ] T051 [P] Write test: keyboard navigation works (Tab, Enter, Space)
+- [X] T047 [P] Create tests/features/dashboard/components/ChartTypeToggle.test.tsx file
+- [X] T048 [P] Write test: renders line and bar buttons
+- [X] T049 [P] Write test: active button has correct styling
+- [X] T050 [P] Write test: clicking button calls onTypeChange callback
+- [X] T051 [P] Write test: keyboard navigation works (Tab, Enter, Space)
 
 ### Implementation for ChartTypeToggle Component
 
-- [ ] T052 [P] Create src/features/dashboard/components/BalanceTrendsChart/ChartTypeToggle.tsx file
-- [ ] T053 [P] Create src/features/dashboard/components/BalanceTrendsChart/ChartTypeToggle.css file
-- [ ] T054 Implement ChartTypeToggle component with line/bar buttons in ChartTypeToggle.tsx
-- [ ] T055 Add button icons (📈 for line, 📊 for bar) in ChartTypeToggle.tsx
-- [ ] T056 Style toggle buttons using CSS custom properties in ChartTypeToggle.css
-- [ ] T057 Add hover and active states in ChartTypeToggle.css
-- [ ] T058 Add aria-label and role="group" for accessibility in ChartTypeToggle.tsx
-- [ ] T059 Implement keyboard navigation (Enter/Space to toggle) in ChartTypeToggle.tsx
-- [ ] T060 Run component tests: npm test ChartTypeToggle.test.tsx (all tests must pass)
+- [X] T052 [P] Create src/features/dashboard/components/BalanceTrendsChart/ChartTypeToggle.tsx file
+- [X] T053 [P] Create src/features/dashboard/components/BalanceTrendsChart/ChartTypeToggle.css file
+- [X] T054 Implement ChartTypeToggle component with line/bar buttons in ChartTypeToggle.tsx
+- [X] T055 Add button icons (📈 for line, 📊 for bar) in ChartTypeToggle.tsx
+- [X] T056 Style toggle buttons using CSS custom properties in ChartTypeToggle.css
+- [X] T057 Add hover and active states in ChartTypeToggle.css
+- [X] T058 Add aria-label and role="group" for accessibility in ChartTypeToggle.tsx
+- [X] T059 Implement keyboard navigation (Enter/Space to toggle) in ChartTypeToggle.tsx
+- [X] T060 Run component tests: npm test ChartTypeToggle.test.tsx (26 tests pass ✅)
 
 ---
 
